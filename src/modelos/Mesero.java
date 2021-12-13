@@ -1,4 +1,4 @@
-package models;
+package modelos;
 
 /**
  * Clase que funge 

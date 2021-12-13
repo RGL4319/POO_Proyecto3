@@ -1,4 +1,4 @@
-package models;
+package modelos;
 
 /**
  * Clase que contiene la abstracción de una mesa...
@@ -7,6 +7,7 @@ public class Mesa {
     
     private int numMesa;
     private boolean ocupada;
+    private Orden orden;
 
     public Mesa ( int numMesa ) {
         this.numMesa = numMesa;
@@ -26,6 +27,14 @@ public class Mesa {
 
     public int getNumeroMesa () {
         return numMesa;
+    }
+
+    public Orden getOrden () {
+        return orden;
+    }
+
+    public void borrarOrden () {
+        orden = null;
     }
 
     @Override
