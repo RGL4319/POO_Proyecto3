@@ -1,6 +1,8 @@
 package modelos;
 
-public class Platillo {
+import java.io.Serializable;
+
+public class Platillo implements Serializable{
     
     private int id;
     private String nombre;

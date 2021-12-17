@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,6 +15,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import modelos.Usuario;
+import repositorio.Repositorio;
 
 public class IniciarSesion extends JFrame {
     
@@ -70,7 +74,12 @@ public class IniciarSesion extends JFrame {
     }
 
     private boolean esUsuario () {
-        return true;
+        List<Usuario> usuarios = Repositorio.getUsuarios();
+        for (Usuario usuario : usuarios) {
+            if ( usuario.verificarUsuario( campoUsuario.getText(), new String( campoContrasenia.getPassword() ) ) )
+                return true;
+        }
+        return false;
     }
 
     private void alternarVistaContrasenia () {

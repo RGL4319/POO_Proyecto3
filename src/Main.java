@@ -1,5 +1,5 @@
+import configuraciones.ManejadorUsuarios;
 import gui.IniciarSesion;
-import modelos.Orden;
 
 /**
  * Clase principal del proyecto.
@@ -11,6 +11,7 @@ public class Main {
      * @param args Pa´rametros de la línea de comando.
      */
     public static void main(String[] args) {
+        ManejadorUsuarios.reescribirArchivoUsuarios();
         new IniciarSesion();
     }
     
