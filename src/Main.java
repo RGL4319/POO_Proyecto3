@@ -1,3 +1,4 @@
+import gui.IniciarSesion;
 import modelos.Orden;
 
 /**
@@ -10,7 +11,7 @@ public class Main {
      * @param args Pa´rametros de la línea de comando.
      */
     public static void main(String[] args) {
-        
+        new IniciarSesion();
     }
     
 }
