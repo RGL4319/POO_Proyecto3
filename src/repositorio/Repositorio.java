@@ -39,7 +39,6 @@ public class Repositorio {
             while ( usuario != null ) {
                 usuario = (Usuario) s.readObject();
                 usuarios.add( usuario );
-                System.out.println(usuario);
             }
             s.close();
             //Agregando el IOException para que no marque ninguna el programa. 
