@@ -1,6 +1,7 @@
 package repositorio;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,14 +35,19 @@ public class Repositorio {
             ObjectInputStream s = new ObjectInputStream( new FileInputStream( ruta + ARCHIVO_USUARIOS) );
             Usuario usuario;
             usuario = (Usuario) s.readObject();
-            System.out.println(usuario);
+          //  System.out.println(usuario);
             while ( usuario != null ) {
                 usuario = (Usuario) s.readObject();
                 usuarios.add( usuario );
                 System.out.println(usuario);
             }
             s.close();
-        } catch (Exception e) {
+            //Agregando el IOException para que no marque ninguna el programa. 
+        }catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
+         catch (Exception e) {
             e.printStackTrace();
             return usuarios;
         }
