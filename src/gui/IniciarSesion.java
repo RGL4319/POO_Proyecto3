@@ -50,8 +50,11 @@ public class IniciarSesion extends JFrame {
         btnIngresar = new JButton("Ingresar");
         btnIngresar.addActionListener( new ActionListener () {
             public void actionPerformed ( ActionEvent e ) {
-                if ( esUsuario() ) {
-                    JOptionPane.showMessageDialog(null, "¡Ingresaste!");
+                Usuario usuario = obtenerUsuario();
+                if ( usuario != null ) {
+                    //JOptionPane.showMessageDialog(null, "¡Ingresaste!");
+                    dispose();
+                    new Inicio(usuario);
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta.");
@@ -73,13 +76,13 @@ public class IniciarSesion extends JFrame {
         add( panelCampos, BorderLayout.CENTER );
     }
 
-    private boolean esUsuario () {
+    private Usuario obtenerUsuario () {
         List<Usuario> usuarios = Repositorio.getUsuarios();
         for (Usuario usuario : usuarios) {
             if ( usuario.verificarUsuario( campoUsuario.getText(), new String( campoContrasenia.getPassword() ) ) )
-                return true;
+                return usuario;
         }
-        return false;
+        return null;
     }
 
     private void alternarVistaContrasenia () {

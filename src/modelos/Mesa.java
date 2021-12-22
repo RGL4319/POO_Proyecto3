@@ -39,7 +39,7 @@ public class Mesa {
 
     @Override
     public String toString() {
-        return String.format( "Número de mesa: %d, %s", numMesa, ocupada ? "ocupada" : "desocupada" );
+        return String.format( "Mesa: %d (%s)", numMesa, ocupada ? "ocupada" : "desocupada" );
     }
 
 }
