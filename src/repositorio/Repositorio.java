@@ -1,5 +1,6 @@
 package repositorio;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,11 +12,11 @@ import modelos.*;
 public class Repositorio {
     
     private static Repositorio instancia;
-    private static final String ruta = ".\\archivos\\";
-    private static final String ARCHIVO_PLATILLOS = "platillos.rest";
-    private static final String ARCHIVO_USUARIOS = "usuarios.rest";
-    private static final String ARCHIVO_ORDENES = "ordens.rest";
-    private static final String ARCHIVO_FACTURAS = "facturas.rest";
+    private static final String ruta = new File("archivos/").getAbsolutePath();
+    public static final String ARCHIVO_PLATILLOS = "platillos.rest";
+    public static final String ARCHIVO_USUARIOS = "usuarios.rest";
+    public static final String ARCHIVO_ORDENES = "ordens.rest";
+    public static final String ARCHIVO_FACTURAS = "facturas.rest";
 
     private Repositorio () {}
 
@@ -71,23 +72,4 @@ public class Repositorio {
     public static String getRuta() {
         return ruta;
     }
-
-    public static String getArchivoPlatillos() {
-        return ARCHIVO_PLATILLOS;
-    }
-
-    public static String getArchivoUsuarios() {
-        return ARCHIVO_USUARIOS;
-    }
-
-    public static String getArchivoOrdenes() {
-        return ARCHIVO_ORDENES;
-    }
-
-    public static String getArchivoFacturas() {
-        return ARCHIVO_FACTURAS;
-    }
-
-    
-
 }

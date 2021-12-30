@@ -14,5 +14,4 @@ public class Main {
         ManejadorUsuarios.reescribirArchivoUsuarios();
         new IniciarSesion();
     }
-    
 }

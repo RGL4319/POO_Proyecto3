@@ -1,5 +1,6 @@
  package configuraciones;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -20,7 +21,8 @@ public class ManejadorUsuarios {
         usuarios.add( new Usuario( 5, "Julio Paredes", 33, 'H', "55-5564-2459", "Paredes24", "2410PJ" ) );
         usuarios.add( new Usuario( 6, "Camila Lopez", 28, 'M', "55-1112-3300", "CmLopez", "Lopz12" ) );
         try {
-            ObjectOutputStream s = new ObjectOutputStream( new FileOutputStream(Repositorio.getRuta() + Repositorio.getArchivoUsuarios() ) );
+            File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
+            ObjectOutputStream s = new ObjectOutputStream( new FileOutputStream(ruta) );
             for ( Usuario usuario : usuarios) {
                 s.writeObject( usuario );
             }
