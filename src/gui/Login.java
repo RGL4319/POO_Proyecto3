@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import modelos.Usuario;
+import modelos.usuarios.Usuario;
 import repositorio.Repositorio;
 
 public class Login extends JFrame {

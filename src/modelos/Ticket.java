@@ -1,5 +1,7 @@
 package modelos;
 
+import modelos.usuarios.Usuario;
+
 public class Ticket {
     
     private final static double iva = 0.16;

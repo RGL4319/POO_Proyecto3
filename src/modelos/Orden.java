@@ -3,6 +3,8 @@ package modelos;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import modelos.usuarios.Usuario;
+
 /**
  * 
  */

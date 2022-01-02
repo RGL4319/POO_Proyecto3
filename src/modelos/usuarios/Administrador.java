@@ -1,10 +1,9 @@
-package modelos;
+package modelos.usuarios;
 
 /**
  * Clase que funge como administrador del sisttema el cual puede...
  */
 public class Administrador extends Usuario {
-    
     public void consultarVentas( boolean deMesa ) {
 
     }

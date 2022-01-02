@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import modelos.*;
+import modelos.usuarios.Usuario;
 
 public class Repositorio {
     

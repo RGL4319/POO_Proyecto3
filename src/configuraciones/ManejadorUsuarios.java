@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-import modelos.Usuario;
+import modelos.usuarios.Usuario;
 import repositorio.Repositorio;
 
 public class ManejadorUsuarios {

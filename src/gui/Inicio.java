@@ -17,9 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import modelos.Administrador;
 import modelos.Mesa;
-import modelos.Usuario;
+import modelos.usuarios.Administrador;
+import modelos.usuarios.Usuario;
 
 public class Inicio extends JFrame {
     

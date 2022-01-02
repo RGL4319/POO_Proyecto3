@@ -1,7 +1,13 @@
-package modelos;
+package modelos.usuarios;
 
 import java.io.Serializable;
 import java.util.Set;
+
+import modelos.Factura;
+import modelos.Mesa;
+import modelos.Orden;
+import modelos.Platillo;
+import modelos.Ticket;
 
 public class Usuario implements Serializable {
 

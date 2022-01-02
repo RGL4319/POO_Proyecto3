@@ -1,4 +1,4 @@
-package modelos;
+package modelos.usuarios;
 
 /**
  * Clase que funge 
