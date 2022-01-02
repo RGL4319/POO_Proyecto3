@@ -1,5 +1,7 @@
+import javax.swing.SwingUtilities;
+
 import configuraciones.ManejadorUsuarios;
-import gui.IniciarSesion;
+import gui.Login;
 
 /**
  * Clase principal del proyecto.
@@ -8,10 +10,15 @@ public class Main {
 
     /**
      * Método principal el cual será el punto de entrada al proyecto.
-     * @param args Pa´rametros de la línea de comando.
+     * @param args Parámetros de la línea de comando.
      */
     public static void main(String[] args) {
         ManejadorUsuarios.reescribirArchivoUsuarios();
-        new IniciarSesion();
+
+        SwingUtilities.invokeLater(() -> {
+            Login login = new Login();
+            login.pack();
+            login.setVisible(true);
+        });
     }
 }
