@@ -18,22 +18,52 @@ import modelos.Usuario;
 import repositorio.Repositorio;
 
 public class Login extends JFrame {
-    
+
+    /**
+     * Campo para capturar el usuario
+     */
     private JTextField campoUsuario;
+
+    /**
+     * Campo para capturar la contraseña
+     */
     private JPasswordField campoPassword;
-    private JLabel etiquetaUsuario, etiquetaPassword;
+
+    /**
+     * Opción para mostrar/ocultar contraseña
+     */
     private JCheckBox mostrarPassword;
+
+    /**
+     * Botón para hacer login
+     */
     private JButton botonLogin;
-    
+
+    /**
+     * Caracter que se muestra en el compo de la contraseña
+     */
     private char puntito;
 
-    public Login () {
+    /**
+     * Constructor de la clase
+     */
+    public Login() {
         super();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo( null );
+        setLocationRelativeTo(null);
         setTitle("NOMBRE RESTAURANTE - Iniciar sesión");
-        setSize(300, 200);
+
+        crearComponentes();
+
+        setResizable(false);
+    }
+
+    /**
+     * Se encarga de construir y configurar todos los componentes de fomulario de
+     * login
+     */
+    private void crearComponentes() {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -43,7 +73,7 @@ public class Login extends JFrame {
 
         campoUsuario = new JTextField();
         campoUsuario.setColumns(20);
-        etiquetaUsuario = new JLabel("Usuario");
+        JLabel etiquetaUsuario = new JLabel("Usuario");
         etiquetaUsuario.setLabelFor(campoUsuario);
 
         panelUsuario.add(etiquetaUsuario);
@@ -55,7 +85,7 @@ public class Login extends JFrame {
 
         campoPassword = new JPasswordField();
         campoPassword.setColumns(20);
-        etiquetaPassword = new JLabel("Contraseña");
+        JLabel etiquetaPassword = new JLabel("Contraseña");
         etiquetaPassword.setLabelFor(campoPassword);
 
         puntito = campoPassword.getEchoChar();
@@ -69,7 +99,7 @@ public class Login extends JFrame {
 
         mostrarPassword = new JCheckBox("Mostrar contraseña");
         mostrarPassword.addActionListener((e) -> {
-            campoPassword.setEchoChar( ( !mostrarPassword.isSelected() ? puntito : 0 ) );
+            campoPassword.setEchoChar((!mostrarPassword.isSelected() ? puntito : 0));
         });
 
         // Creación del botón de login
@@ -98,15 +128,22 @@ public class Login extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
 
         getContentPane().add(panel);
-
-        setResizable(false);
     }
 
-    private Usuario obtenerUsuario () {
+    /**
+     * Retorna el usuario asociado con las credenciales proporcionadas en el login
+     *
+     * @return el usuario que coincide
+     */
+    private Usuario obtenerUsuario() {
         List<Usuario> usuarios = Repositorio.getUsuarios();
-        for (Usuario usuario : usuarios) {
-            if ( usuario.verificarUsuario( campoUsuario.getText(), new String( campoPassword.getPassword() ) ) )
-                return usuario;
+
+        String usuario = campoUsuario.getText();
+        String password = new String(campoPassword.getPassword());
+
+        for (Usuario u : usuarios) {
+            if (u.verificarUsuario(usuario, password))
+                return u;
         }
         return null;
     }
