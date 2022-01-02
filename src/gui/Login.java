@@ -52,7 +52,7 @@ public class Login extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setTitle("NOMBRE RESTAURANTE - Iniciar sesión");
+        setTitle("COCINA MEXICANA - Iniciar sesión");
 
         crearComponentes();
 
