@@ -21,6 +21,7 @@ public class ManejadorUsuarios {
         usuarios.add( new Usuario( "Camilo Perez" , LocalDate.parse("1999-05-28"), 'H', "55-4444-3321", "Camlo01", "Asw123" ) );
         usuarios.add( new Usuario( "Julio Paredes", LocalDate.parse("2002-06-07"), 'H', "55-5564-2459", "Paredes24", "2410PJ" ) );
         usuarios.add( new Usuario( "Camila Lopez",  LocalDate.parse("1997-04-11"), 'M', "55-1112-3300", "CmLopez", "Lopz12" ) );
+        usuarios.add( new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ) );
 
         try {
             File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
