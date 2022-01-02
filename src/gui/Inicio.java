@@ -9,8 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,12 +25,10 @@ public class Inicio extends JFrame {
     private JPanel panelDerecha;
     private JPanel panelBotones;
     private JLabel etiquetaUsuario;
-    private JComboBox comboMesa;
+    private JComboBox<Mesa> comboMesa;
     private JLabel etiquetaFiltros;
     ButtonGroup grupoFiltros;
 
-    private JCheckBox checkMostrarContrasenia;
-    private JButton btnIngresar;
     
     private Usuario usuario;
 
@@ -94,5 +90,4 @@ public class Inicio extends JFrame {
     private boolean esAdmin() {
         return usuario instanceof Administrador;
     }
-
 }

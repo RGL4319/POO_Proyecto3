@@ -142,7 +142,7 @@ public class Login extends JFrame {
         String password = new String(campoPassword.getPassword());
 
         for (Usuario u : usuarios) {
-            if (u.verificarUsuario(usuario, password))
+            if (u.verificarCredenciales(usuario, password))
                 return u;
         }
         return null;

@@ -1,6 +1,8 @@
 package modelos.usuarios;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Set;
 
 import modelos.Factura;
@@ -12,29 +14,27 @@ import modelos.Ticket;
 public class Usuario implements Serializable {
 
     private static int numUsuarios;
+
     private int numVentas;
     private int id;
     private String nombre;
-    private int edad;
+    private LocalDate fechaNacimiento;
     private char sexo;
     private String telefono;
     private static Set<Platillo> platillos;
+    private String usuario;
+    private String password;
 
-    
-
-    public Usuario(int id, String nombre, int edad, char sexo, String telefono, String usuario, String contrasenia) {
-        this.id = id;
+    public Usuario(String nombre, LocalDate fechaNacimiento, char sexo, String telefono, String usuario, String password) {
+        this.id = ++numUsuarios;
         this.nombre = nombre;
-        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.telefono = telefono;
         this.usuario = usuario;
-        this.contrasenia = contrasenia;
+        this.password = password;
     }
 
-    private String usuario;
-    private String contrasenia;
-    
     public Orden crearOrden() {
         return null;
     }
@@ -54,8 +54,8 @@ public class Usuario implements Serializable {
         return null;
     }
 
-    public boolean verificarUsuario ( String usuario, String contrasenia ) {
-        return this.usuario.equals( usuario) && this.contrasenia.equals( contrasenia );
+    public boolean verificarCredenciales ( String usuario, String contrasenia ) {
+        return this.usuario.equals( usuario) && this.password.equals( contrasenia );
     }
 
     public static int getNumUsuarios() {
@@ -91,27 +91,15 @@ public class Usuario implements Serializable {
     }
 
     public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
 
     public char getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
-    }
-
     public String getTelefono() {
         return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public static Set<Platillo> getPlatillos() {
@@ -126,18 +114,11 @@ public class Usuario implements Serializable {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public String getPassword() {
+        return password;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
-    
-
 }
