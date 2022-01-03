@@ -6,7 +6,6 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,7 +15,7 @@ import javax.swing.JTextField;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 
-public class FormularioMesero extends JFrame {
+public class FormularioMesero extends JPanel {
     
     private Restaurante restaurante;
     private Usuario usuario;
@@ -34,24 +33,17 @@ public class FormularioMesero extends JFrame {
     private JButton btnAccion;
 
 
-    public FormularioMesero ( Restaurante restaurante, Usuario usuario ) {
+    public FormularioMesero ( Restaurante restaurante ) {
         super();
 
         this.restaurante = restaurante;
-        this.usuario = usuario;
         this.editar = usuario != null;
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setTitle("Administrador - " + ( editar ? "Editar" : "Crear" ) + " usuario");
-
         crearComponentes();
+    }
 
-        if ( editar ) {
-            cargarDatosUsuario();
-        }
-
-        setResizable(false);
+    public void setUsuario(Usuario usuario) {
+      this.usuario = usuario;
     }
 
     private void crearComponentes() {
@@ -167,18 +159,19 @@ public class FormularioMesero extends JFrame {
             else {
                 // Acción para crear
             }
-            // Usuario usuario = obtenerUsuario();
-            // if (usuario != null) {
-            //     // JOptionPane.showMessageDialog(null, "¡Ingresaste!");
-            //     dispose();
-            //     var inicio = new Inicio(restaurante, usuario);
-            //     inicio.setVisible(true);
-            //     inicio.pack();
-
-            // } else {
-            //     JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
-            // }
         });
+
+        JButton btnRegresar = new JButton("Volver");
+
+        btnRegresar.addActionListener(e -> {
+            VentanaApp.getInstancia().toggleVistasUsuarios();
+        });
+
+        Box cajaBotones = Box.createHorizontalBox();
+
+        cajaBotones.add(btnAccion);
+        cajaBotones.add(Box.createHorizontalStrut(10));
+        cajaBotones.add(btnRegresar);
 
         panelDerecho.add( panelTelefono );
         panelDerecho.add(Box.createVerticalStrut(10));
@@ -186,7 +179,7 @@ public class FormularioMesero extends JFrame {
         panelDerecho.add(Box.createVerticalStrut(10));
         panelDerecho.add( panelSexo );
         panelDerecho.add(Box.createVerticalStrut(10));
-        panelDerecho.add( btnAccion );
+        panelDerecho.add( cajaBotones );
 
         panel.add( panelIzquierdo );
         panel.add(Box.createHorizontalStrut(20));
@@ -194,11 +187,10 @@ public class FormularioMesero extends JFrame {
 
         panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
 
-        getContentPane().add(panel);
-
+        add(panel);
     }
 
-    private void cargarDatosUsuario () {
+    public void cargarDatosUsuario () {
         campoNombre.setText( usuario.getNombre() );
         campoUsuario.setText( usuario.getUsuario() );
         campoPassword.setText( usuario.getPassword() );

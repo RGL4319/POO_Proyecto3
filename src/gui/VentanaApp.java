@@ -20,6 +20,9 @@ public class VentanaApp extends JFrame {
   private JTabbedPane panel;
   private JLabel nombreUsuario;
 
+  private VentanaUsuarios buscador;
+  private FormularioMesero formulario;
+
   private Restaurante restaurante;
   private Usuario usuario;
 
@@ -87,9 +90,31 @@ public class VentanaApp extends JFrame {
     panel.removeAll();
     panel.add("Inicio", new Inicio(restaurante, usuario));
     if ( usuario.esAdmin() ) {
-      panel.add( "Usuarios", new VentanaUsuarios(restaurante, usuario) );
+
+      JPanel panelUsuarios = new JPanel();
+
+      buscador = new VentanaUsuarios(restaurante, usuario);
+      formulario = new FormularioMesero(restaurante);
+
+      panelUsuarios.add(buscador);
+      panelUsuarios.add(formulario);
+
+      formulario.setVisible(false);
+
+      panel.add( "Usuarios",  panelUsuarios);
     }
     panel.add("Logout", new JPanel());
     setSize(600, 400);
+  }
+
+  public void toggleVistasUsuarios() {
+      formulario.setVisible(!formulario.isVisible());
+      buscador.setVisible(!buscador.isVisible());
+
+      pack();
+  }
+
+  public FormularioMesero getFormulario() {
+    return formulario;
   }
 }

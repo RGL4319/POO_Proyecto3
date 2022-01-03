@@ -1,21 +1,14 @@
 package gui;
 
-import java.awt.Dimension;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import modelos.Restaurante;
@@ -46,17 +39,6 @@ public class VentanaUsuarios extends JPanel {
         me = this;
 
         crearComponentes();
-
-        // cargarUsuarios();
-        
-        
-        // panelResultados.add( new CuadroUsuario( restaurante, this, usuario ).getContenedor() );
-        // panelResultados.repaint();
-        // panelResultados.add( new CuadroUsuario( restaurante, this, usuario ).getContenedor() );
-        // panelResultados.repaint();
-        // panelResultados.add( new CuadroUsuario( restaurante, this, usuario ).getContenedor() );
-        // panelResultados.repaint();
-
     }
 
     private void crearComponentes() {
@@ -95,9 +77,8 @@ public class VentanaUsuarios extends JPanel {
 
         btnCrearUsuario = new JButton("Crear usuario");
         btnCrearUsuario.addActionListener( e -> {
-            // FormularioMesero form = new FormularioMesero( restaurante, null );
-            // form.pack();
-            // form.setVisible(true);
+            VentanaApp.getInstancia().toggleVistasUsuarios();
+            VentanaApp.getInstancia().getFormulario().setUsuario(null);
         } );
 
         panelIzquierdo.add( panelBusqueda );
@@ -131,21 +112,21 @@ public class VentanaUsuarios extends JPanel {
                 case "Nombre":
                     if ( usuario.getNombre().equals( campoBusqueda.getText() ) ) {
                         System.out.println(usuario);
-                        panelResultados.add( new CuadroUsuario( restaurante, me, usuario ).getContenedor() );
+                        panelResultados.add( new CuadroUsuario( restaurante, me, usuario ) );
                     }
                     break;
             
                 case "Usuario":
                     if ( usuario.getUsuario().equals( campoBusqueda.getText() ) ) {
                         System.out.println(usuario);
-                        panelResultados.add( new CuadroUsuario( restaurante, me, usuario ).getContenedor() );
+                        panelResultados.add( new CuadroUsuario( restaurante, me, usuario ) );
                     }
                     break;
             
                 case "Teléfono":
                     if ( usuario.getTelefono().equals( campoBusqueda.getText() ) ) {
                         System.out.println(usuario);
-                        panelResultados.add( new CuadroUsuario( restaurante, me, usuario ).getContenedor() );
+                        panelResultados.add( new CuadroUsuario( restaurante, me, usuario ) );
                     }
                     break;
             
@@ -156,5 +137,4 @@ public class VentanaUsuarios extends JPanel {
         VentanaApp.getInstancia().pack();
         repaint();
     }
-
 }

@@ -4,18 +4,17 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 
-public class CuadroUsuario{
+public class CuadroUsuario extends Box{
 
     JButton btnEditar;
-    Box contenedor;
 
     public CuadroUsuario ( Restaurante res, VentanaUsuarios ventana, Usuario usuario ) {
-        contenedor = Box.createHorizontalBox();
+
+        super(BoxLayout.X_AXIS);
 
         Box datos = Box.createVerticalBox();
         datos.add( new JLabel(String.format("Nombre: %s", usuario.getNombre())) );
@@ -27,19 +26,14 @@ public class CuadroUsuario{
         btnEditar = new JButton("Editar");
 
         btnEditar.addActionListener( e -> {
-            ventana.dispose();
-            FormularioMesero form = new FormularioMesero( res, usuario );
-            form.pack();
-            form.setVisible(true);
+            VentanaApp.getInstancia().toggleVistasUsuarios();
+            VentanaApp.getInstancia().getFormulario().setUsuario(usuario);
+
+            VentanaApp.getInstancia().getFormulario().cargarDatosUsuario();
+
         } );
 
-        contenedor.add(datos);
-        // contenedor.add( Box.createHorizontalStrut(50) );
-        contenedor.add(btnEditar);
+        add(datos);
+        add(btnEditar);
     }
-
-    public Box getContenedor() {
-        return contenedor;
-    }
-
 }
