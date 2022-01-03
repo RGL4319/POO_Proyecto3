@@ -10,10 +10,15 @@ import modelos.usuarios.Usuario;
  */
 public class Orden {
     
+    private static int numOrdenes = 0;
+
+    private int id;
     private Usuario servidor;
     private Map<Platillo, Integer> platillos;
 
     public Orden ( Usuario servidor ) {
+        this.id = ++numOrdenes;
+
         this.servidor = servidor;
         platillos = new LinkedHashMap<>();
     }
@@ -37,5 +42,4 @@ public class Orden {
             total += platillo.getPrecio() * platillos.get(platillo);
         return total;
     }
-
 }

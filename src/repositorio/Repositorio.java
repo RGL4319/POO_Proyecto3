@@ -64,10 +64,6 @@ public class Repositorio {
         return null;
     }
 
-    public static List<Factura> getFacturas() {
-        return null;
-    }
-
     public static String getRuta() {
         return ruta;
     }

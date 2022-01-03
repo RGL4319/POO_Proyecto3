@@ -72,6 +72,10 @@ public class Inicio extends JFrame {
 
         configurarComboMesas();
 
+        comboMesa.addActionListener((e) -> {
+            System.out.println(comboMesa.getSelectedItem());
+        });
+
         filtroMesas.add(comboMesa);
         filtroMesas.add(checkFiltroOcupadas);
         filtroMesas.add(checkFiltroDesocupadas);
@@ -94,7 +98,7 @@ public class Inicio extends JFrame {
         comboMesa.removeAllItems();
 
         for (Mesa mesa : restaurante.getMesas()) {
-            if (mesa.estaOcupada() && ocupadas)
+            if (mesa.estaOcupada() && mesa.getOrden().getServidor().equals(usuario) && ocupadas)
                 comboMesa.addItem( mesa );
             else if (!mesa.estaOcupada() && desocupadas)
                 comboMesa.addItem( mesa );
@@ -105,10 +109,5 @@ public class Inicio extends JFrame {
         } else {
             comboMesa.setSelectedIndex(0);
         }
-
-        comboMesa.addActionListener((e) -> {
-            System.out.println(comboMesa.getSelectedItem());
-        });
-
     }
 }

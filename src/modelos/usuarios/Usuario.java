@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Set;
 
-import modelos.Factura;
 import modelos.Mesa;
 import modelos.Orden;
 import modelos.Platillo;
@@ -50,10 +49,6 @@ public class Usuario implements Serializable {
         mesa.borrarOrden();
         return ticket;
     }    
-
-    public Factura facturar ( Orden orden ) {
-        return null;
-    }
 
     public boolean verificarCredenciales ( String usuario, String contrasenia ) {
         return this.usuario.equals( usuario) && this.password.equals( contrasenia );
