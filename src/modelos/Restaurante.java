@@ -2,6 +2,7 @@ package modelos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Restaurante {
 
@@ -14,6 +15,11 @@ public class Restaurante {
    * Las mesas del restaurente
    */
   private List<Mesa> mesas;
+
+  /**
+   * Los platillos del restaurnate
+   */
+  private Set<Platillo> platillos;
 
   /**
    * Constructor de la clase

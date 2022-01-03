@@ -3,11 +3,9 @@ package modelos.usuarios;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Set;
 
 import modelos.Mesa;
 import modelos.Orden;
-import modelos.Platillo;
 import modelos.Ticket;
 
 public class Usuario implements Serializable {
@@ -23,7 +21,7 @@ public class Usuario implements Serializable {
     private String usuario;
     private String password;
 
-    private static Set<Platillo> platillos;
+    
 
     public Usuario(String nombre, LocalDate fechaNacimiento, char sexo, String telefono, String usuario, String password) {
         this.id = ++numUsuarios;
@@ -96,14 +94,6 @@ public class Usuario implements Serializable {
 
     public String getTelefono() {
         return telefono;
-    }
-
-    public static Set<Platillo> getPlatillos() {
-        return platillos;
-    }
-
-    public static void setPlatillos(Set<Platillo> platillos) {
-        Usuario.platillos = platillos;
     }
 
     public String getUsuario() {
