@@ -46,14 +46,16 @@ public class Main {
             VentanaApp app = VentanaApp.crearInstancia(res);
             app.setVisible(true);
             app.crearSesion(new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
-            //app.pack();
-            // Login login = new Login(res);
-            // login.pack();
-            // login.setVisible(true);
+            
+            // FormularioMesero form = new FormularioMesero(res, new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'H', "55-1111-3300", "GamaRL", "123" ));
+            // // FormularioMesero form = new FormularioMesero(res, null);
+            // form.pack();
+            // form.setVisible(true);
 
-            // Inicio inicio = new Inicio(res, new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ) );
-            // inicio.pack();
-            // inicio.setVisible(true);
+            // System.out.println("Inicio");
+            // VentanaUsuarios v = new VentanaUsuarios(res, new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ) );
+            // v.pack();
+            // v.setVisible(true);
         });
     }
 }
