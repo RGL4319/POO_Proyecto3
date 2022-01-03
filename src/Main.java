@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import javax.swing.SwingUtilities;
 
 import configuraciones.ManejadorUsuarios;
+import gui.FormularioMesero;
 import gui.Inicio;
 import gui.Login;
 import modelos.Restaurante;
@@ -30,6 +31,11 @@ public class Main {
             // Inicio inicio = new Inicio(res, new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ) );
             // inicio.pack();
             // inicio.setVisible(true);
+
+            // FormularioMesero form = new FormularioMesero(res, new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'H', "55-1111-3300", "GamaRL", "123" ));
+            // // FormularioMesero form = new FormularioMesero(res, null);
+            // form.pack();
+            // form.setVisible(true);
         });
     }
 }
