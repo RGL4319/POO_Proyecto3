@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
-import repositorio.Repositorio;
+import repositorio.RepositorioUsuarios;
 
 public class VentanaUsuarios extends JPanel {
     
@@ -107,25 +107,22 @@ public class VentanaUsuarios extends JPanel {
 
     private void cargarUsuarios () {
         panelResultados.removeAll();
-        for ( Usuario usuario: Repositorio.getUsuarios()) {
+        for ( Usuario usuario: RepositorioUsuarios.getUsuarios()) {
             switch ( filtros.getSelectedItem().toString() ) {
                 case "Nombre":
                     if ( usuario.getNombre().equals( campoBusqueda.getText() ) ) {
-                        System.out.println(usuario);
                         panelResultados.add( new CuadroUsuario( restaurante, me, usuario ) );
                     }
                     break;
             
                 case "Usuario":
                     if ( usuario.getUsuario().equals( campoBusqueda.getText() ) ) {
-                        System.out.println(usuario);
                         panelResultados.add( new CuadroUsuario( restaurante, me, usuario ) );
                     }
                     break;
             
                 case "Teléfono":
                     if ( usuario.getTelefono().equals( campoBusqueda.getText() ) ) {
-                        System.out.println(usuario);
                         panelResultados.add( new CuadroUsuario( restaurante, me, usuario ) );
                     }
                     break;

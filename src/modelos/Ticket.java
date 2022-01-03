@@ -1,8 +1,10 @@
 package modelos;
 
+import java.io.Serializable;
+
 import modelos.usuarios.Usuario;
 
-public class Ticket {
+public class Ticket implements Serializable {
     
     private final static double iva = 0.16;
     private Mesa mesa;

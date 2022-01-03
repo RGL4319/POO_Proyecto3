@@ -1,11 +1,12 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import modelos.usuarios.Usuario;
 
-public class Orden {
+public class Orden implements Serializable {
     
     private static int numOrdenes = 0;
 

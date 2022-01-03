@@ -1,9 +1,11 @@
 package modelos;
 
+import java.io.Serializable;
+
 /**
  * Clase que contiene la abstracción de una mesa...
  */
-public class Mesa {
+public class Mesa implements Serializable {
     
     private int numMesa;
     private boolean ocupada;

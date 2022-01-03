@@ -45,7 +45,6 @@ class ButtonEditor extends DefaultCellEditor {
     btn.setOpaque(true);
 
     btn.addActionListener(e -> {
-      System.out.println("Nada");
       fireEditingStopped();
     });
   }
@@ -61,7 +60,7 @@ class ButtonEditor extends DefaultCellEditor {
   @Override
   public Object getCellEditorValue() {
     if (clicked) {
-      System.out.println(label + " clicked!");
+      // Eliminar platillo de orden
     }
 
     clicked = false;

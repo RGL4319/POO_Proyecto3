@@ -14,9 +14,14 @@ import modelos.usuarios.Usuario;
 import repositorio.Repositorio;
 
 public class ManejadorUsuarios {
-    /*Agregando usuarios nuevos*/
-    public static void reescribirArchivoUsuarios () {
+
+    /**
+     * Se agregan usuarios al archivo de usuarios
+     */
+    public static void reescribirArchivo () {
+
         List<Usuario> usuarios = new LinkedList<>();
+
         usuarios.add( new Mesero( "Alfonso Perez", LocalDate.parse("2001-12-25"), 'H', "55-3444-3121", "Alfonso33", "Hola1" ) );
         usuarios.add( new Mesero( "Antonio Chong", LocalDate.parse("1989-04-14"), 'H', "55-4564-2459", "Chong10", "Doggo10" ) );
         usuarios.add( new Mesero( "Gabriela Luna", LocalDate.parse("1979-11-11"), 'H', "55-1144-3300", "Gaby123", "wola" ) );

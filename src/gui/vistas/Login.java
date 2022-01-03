@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import gui.VentanaApp;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
-import repositorio.Repositorio;
+import repositorio.RepositorioUsuarios;
 
 public class Login extends JPanel {
 
@@ -129,7 +129,7 @@ public class Login extends JPanel {
      * @return el usuario que coincide
      */
     private Usuario obtenerUsuario() {
-        List<Usuario> usuarios = Repositorio.getUsuarios();
+        List<Usuario> usuarios = RepositorioUsuarios.getUsuarios();
 
         String usuario = campoUsuario.getText();
         String password = new String(campoPassword.getPassword());

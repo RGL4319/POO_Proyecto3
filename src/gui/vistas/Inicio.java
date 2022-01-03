@@ -66,7 +66,6 @@ public class Inicio extends JPanel {
         configurarComboMesas();
 
         comboMesa.addActionListener((e) -> {
-            System.out.println(comboMesa.getSelectedItem());
         });
 
         filtroMesas.add(comboMesa);
