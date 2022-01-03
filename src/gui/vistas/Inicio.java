@@ -1,17 +1,16 @@
-package gui;
+package gui.vistas;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import modelos.Mesa;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 
-public class Inicio extends JFrame {
+public class Inicio extends JPanel {
 
     /**
      * El restaurante asociado al programa
@@ -43,16 +42,10 @@ public class Inicio extends JFrame {
      * @param usuario el usuario que tiene la sesión abierta
      */
     public Inicio ( Restaurante restaurante, Usuario usuario ) {
-        super(restaurante.getNombre() + " - Inicio");
-
         this.restaurante = restaurante;
         this.usuario = usuario;
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo( null );
-
-        JPanel root = new JPanel();
-        root.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         Box filtroMesas = Box.createHorizontalBox();
 
@@ -80,9 +73,7 @@ public class Inicio extends JFrame {
         filtroMesas.add(checkFiltroOcupadas);
         filtroMesas.add(checkFiltroDesocupadas);
 
-        root.add(filtroMesas);
-
-        getContentPane().add(root);
+        add(filtroMesas);
     }
 
     /**

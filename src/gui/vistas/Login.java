@@ -1,4 +1,4 @@
-package gui;
+package gui.vistas;
 
 import java.util.List;
 
@@ -7,23 +7,19 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import gui.VentanaApp;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 import repositorio.Repositorio;
 
-public class Login extends JFrame {
+public class Login extends JPanel {
 
-    /**
-     * El restaurante asociado al programa
-     */
-    private Restaurante restaurante;
 
     /**
      * Campo para capturar el usuario
@@ -55,16 +51,7 @@ public class Login extends JFrame {
      */
     public Login(Restaurante restaurante) {
         super();
-
-        this.restaurante = restaurante;
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setTitle("COCINA MEXICANA - Iniciar sesión");
-
         crearComponentes();
-
-        setResizable(false);
     }
 
     /**
@@ -73,8 +60,8 @@ public class Login extends JFrame {
      */
     private void crearComponentes() {
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        //JPanel panel = new JPanel();
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Creación del campo para el 'usuario'
         Box panelUsuario = Box.createHorizontalBox();
@@ -115,12 +102,7 @@ public class Login extends JFrame {
         botonLogin.addActionListener((e) -> {
             Usuario usuario = obtenerUsuario();
             if (usuario != null) {
-                // JOptionPane.showMessageDialog(null, "¡Ingresaste!");
-                dispose();
-                var inicio = new Inicio(restaurante, usuario);
-                inicio.setVisible(true);
-                inicio.pack();
-
+                VentanaApp.getInstancia().crearSesion(usuario);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -130,15 +112,15 @@ public class Login extends JFrame {
         panelControl.add(Box.createHorizontalStrut(20));
         panelControl.add(botonLogin);
 
-        panel.add(panelUsuario);
-        panel.add(Box.createVerticalStrut(30));
-        panel.add(panelPassword);
-        panel.add(Box.createVerticalStrut(30));
-        panel.add(panelControl);
+        add(panelUsuario);
+        add(Box.createVerticalStrut(30));
+        add(panelPassword);
+        add(Box.createVerticalStrut(30));
+        add(panelControl);
 
-        panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
+        setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
 
-        getContentPane().add(panel);
+        //getContentPane().add(panel);
     }
 
     /**

@@ -17,7 +17,7 @@ public class Restaurante {
   private List<Mesa> mesas;
 
   /**
-   * Los platillos del restaurnate
+   * Los platillos del restaurante
    */
   private Set<Platillo> platillos;
 

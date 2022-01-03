@@ -5,9 +5,6 @@ import java.util.Map;
 
 import modelos.usuarios.Usuario;
 
-/**
- * 
- */
 public class Orden {
     
     private static int numOrdenes = 0;
@@ -41,5 +38,13 @@ public class Orden {
         for (Platillo platillo : platillos.keySet())
             total += platillo.getPrecio() * platillos.get(platillo);
         return total;
+    }
+
+    /**
+     * Método de acceso de consulta para el atributo 'id' de la orden
+     * @return el 'id' de la orden
+     */
+    public int getId() {
+      return id;
     }
 }
