@@ -53,8 +53,7 @@ public class VentanaUsuarios extends JFrame {
 
         // cargarUsuarios();
         
-        panelResultados.add( new CuadroUsuario( restaurante, this, usuario ).getContenedor() );
-        panelResultados.repaint();
+        
         // panelResultados.add( new CuadroUsuario( restaurante, this, usuario ).getContenedor() );
         // panelResultados.repaint();
         // panelResultados.add( new CuadroUsuario( restaurante, this, usuario ).getContenedor() );
@@ -83,6 +82,7 @@ public class VentanaUsuarios extends JFrame {
         });
 
         panelBusqueda.add(campoBusqueda);
+        panelBusqueda.add(Box.createHorizontalStrut(30));
         panelBusqueda.add( btnBuscar );
 
         Box panelFiltro = Box.createHorizontalBox();
@@ -95,7 +95,7 @@ public class VentanaUsuarios extends JFrame {
         etiquetaFiltro.setLabelFor(filtros);
 
         panelFiltro.add( etiquetaFiltro );
-        panelIzquierdo.add(Box.createHorizontalStrut(20));
+        panelFiltro.add(Box.createHorizontalStrut(30));
         panelFiltro.add( filtros );
 
         btnCrearUsuario = new JButton("Crear usuario");
@@ -121,7 +121,7 @@ public class VentanaUsuarios extends JFrame {
 
 
         panel.add( panelIzquierdo );
-        panel.add(Box.createHorizontalStrut(20));
+        panel.add(Box.createHorizontalStrut(30));
         panel.add( panelDerecho );
 
         panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
@@ -159,7 +159,7 @@ public class VentanaUsuarios extends JFrame {
                     break;
             }
         }
-        panelResultados.repaint();
+        repaint();
     }
 
 }

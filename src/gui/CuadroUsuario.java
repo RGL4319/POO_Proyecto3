@@ -34,6 +34,7 @@ public class CuadroUsuario{
         } );
 
         contenedor.add(datos);
+        // contenedor.add( Box.createHorizontalStrut(50) );
         contenedor.add(btnEditar);
     }
 
