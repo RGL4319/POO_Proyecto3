@@ -21,9 +21,10 @@ public class Usuario implements Serializable {
     private LocalDate fechaNacimiento;
     private char sexo;
     private String telefono;
-    private static Set<Platillo> platillos;
     private String usuario;
     private String password;
+
+    private static Set<Platillo> platillos;
 
     public Usuario(String nombre, LocalDate fechaNacimiento, char sexo, String telefono, String usuario, String password) {
         this.id = ++numUsuarios;
@@ -118,7 +119,7 @@ public class Usuario implements Serializable {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean esAdmin() {
+        return (this instanceof Administrador);
     }
 }

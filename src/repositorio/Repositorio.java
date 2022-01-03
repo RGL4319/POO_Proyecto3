@@ -1,8 +1,8 @@
 package repositorio;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,27 +34,21 @@ public class Repositorio {
 
     public static List<Usuario> getUsuarios() {
         List<Usuario> usuarios = new LinkedList<>();
-        try {
-            File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
-            ObjectInputStream s = new ObjectInputStream(new FileInputStream(ruta));
+        File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
+
+        try (ObjectInputStream s = new ObjectInputStream(new FileInputStream(ruta))) {
 
             Usuario usuario = null;
 
             do {
                 usuario = (Usuario) s.readObject();
-
-                if (usuario == null) break;
-
                 usuarios.add(usuario);
 
             } while (usuario != null);
 
-            s.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (EOFException e) {
         } catch (Exception e) {
             e.printStackTrace();
-            return usuarios;
         }
         return usuarios;
     }

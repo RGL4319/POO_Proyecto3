@@ -1,8 +1,5 @@
 package gui;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
@@ -11,9 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import modelos.Mesa;
+import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 
 public class Inicio extends JFrame {
+
+    /**
+     * El restaurante asociado al programa
+     */
+    private Restaurante restaurante;
 
     /**
      * El selector de mesas
@@ -39,8 +42,10 @@ public class Inicio extends JFrame {
      * Constructor de la clase
      * @param usuario el usuario que tiene la sesión abierta
      */
-    public Inicio ( Usuario usuario ) {
-        super("COCINA MEXICANA - Inicio");
+    public Inicio ( Restaurante restaurante, Usuario usuario ) {
+        super(restaurante.getNombre() + " - Inicio");
+
+        this.restaurante = restaurante;
         this.usuario = usuario;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,8 +56,19 @@ public class Inicio extends JFrame {
 
         Box filtroMesas = Box.createHorizontalBox();
 
-        checkFiltroDesocupadas = new JCheckBox("Desocupadas");
-        checkFiltroOcupadas = new JCheckBox("Ocupadas");
+        checkFiltroDesocupadas = new JCheckBox("Desocupadas", true);
+        checkFiltroOcupadas = new JCheckBox("Ocupadas", true);
+
+        checkFiltroDesocupadas.addActionListener(e -> {
+            if (!checkFiltroDesocupadas.isSelected() && !checkFiltroOcupadas.isSelected())
+                checkFiltroDesocupadas.setSelected(true);
+            configurarComboMesas();
+        });
+        checkFiltroOcupadas.addActionListener(e -> {
+            if (!checkFiltroDesocupadas.isSelected() && !checkFiltroOcupadas.isSelected())
+                checkFiltroOcupadas.setSelected(true);
+            configurarComboMesas();
+        });
 
         configurarComboMesas();
 
@@ -69,23 +85,30 @@ public class Inicio extends JFrame {
      * Configura las opciones de la selección de mesas
      */
     private void configurarComboMesas() {
+        boolean ocupadas = checkFiltroOcupadas.isSelected();
+        boolean desocupadas = checkFiltroDesocupadas.isSelected();
+
         if (comboMesa == null)
             comboMesa = new JComboBox<>();
+        
+        comboMesa.removeAllItems();
 
-        List<Mesa> mesas = new LinkedList<>();
+        for (Mesa mesa : restaurante.getMesas()) {
+            if (mesa.estaOcupada() && ocupadas)
+                comboMesa.addItem( mesa );
+            else if (!mesa.estaOcupada() && desocupadas)
+                comboMesa.addItem( mesa );
+        }
 
-        mesas.add( new Mesa( 1 ) );
-        mesas.add( new Mesa( 2 ) );
-        mesas.add( new Mesa( 3 ) );
-
-        for (Mesa mesa : mesas) {
-            comboMesa.addItem( mesa );
+        if (comboMesa.getItemCount() == 0) {
+            // TODO: Manejo de ComboBox Vacío
+        } else {
+            comboMesa.setSelectedIndex(0);
         }
 
         comboMesa.addActionListener((e) -> {
             System.out.println(comboMesa.getSelectedItem());
         });
 
-        comboMesa.setSelectedIndex(0);
     }
 }

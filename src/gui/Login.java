@@ -14,10 +14,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 import repositorio.Repositorio;
 
 public class Login extends JFrame {
+
+    /**
+     * El restaurante asociado al programa
+     */
+    private Restaurante restaurante;
 
     /**
      * Campo para capturar el usuario
@@ -47,8 +53,10 @@ public class Login extends JFrame {
     /**
      * Constructor de la clase
      */
-    public Login() {
+    public Login(Restaurante restaurante) {
         super();
+
+        this.restaurante = restaurante;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -109,9 +117,12 @@ public class Login extends JFrame {
             if (usuario != null) {
                 // JOptionPane.showMessageDialog(null, "¡Ingresaste!");
                 dispose();
-                new Inicio(usuario);
+                var inicio = new Inicio(restaurante, usuario);
+                inicio.setVisible(true);
+                inicio.pack();
+
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta.");
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 

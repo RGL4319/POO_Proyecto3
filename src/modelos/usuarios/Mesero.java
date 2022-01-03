@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class Mesero extends Usuario {
     
-    public Mesero(int id, String nombre, LocalDate fechaNacimiento, char sexo, String telefono, String usuario, String contrasenia) {
-        super(nombre, fechaNacimiento, sexo, telefono, usuario, contrasenia);
+    public Mesero(String nombre, LocalDate fechaNacimiento, char sexo, String telefono, String usuario, String password) {
+        super(nombre, fechaNacimiento, sexo, telefono, usuario, password);
     }
 }
