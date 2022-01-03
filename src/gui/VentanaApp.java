@@ -65,6 +65,7 @@ public class VentanaApp extends JFrame {
     setLocationRelativeTo(null);
     setTitle(restaurante.getNombre() + " - Iniciar sesión");
 
+    setSize(400, 200);
     setResizable(false);
   }
 
@@ -86,6 +87,6 @@ public class VentanaApp extends JFrame {
     panel.removeAll();
     panel.add("Inicio", new Inicio(restaurante, usuario));
     panel.add("Logout", new JPanel());
-    setSize(600, 300);
+    setSize(600, 400);
   }
 }

@@ -74,6 +74,7 @@ public class Inicio extends JPanel {
         filtroMesas.add(checkFiltroDesocupadas);
 
         add(filtroMesas);
+        add(new OrdenMesa(restaurante, restaurante.getMesas().get(0)));
     }
 
     /**
