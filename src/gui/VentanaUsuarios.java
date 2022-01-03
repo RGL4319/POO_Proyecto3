@@ -22,7 +22,7 @@ import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 import repositorio.Repositorio;
 
-public class VentanaUsuarios extends JFrame {
+public class VentanaUsuarios extends JPanel {
     
     private Restaurante restaurante;
     private Usuario usuario;
@@ -45,10 +45,6 @@ public class VentanaUsuarios extends JFrame {
         this.editar = usuario != null;
         me = this;
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setTitle("Administrador - Usuarios");
-
         crearComponentes();
 
         // cargarUsuarios();
@@ -61,7 +57,6 @@ public class VentanaUsuarios extends JFrame {
         // panelResultados.add( new CuadroUsuario( restaurante, this, usuario ).getContenedor() );
         // panelResultados.repaint();
 
-        setResizable(false);
     }
 
     private void crearComponentes() {
@@ -100,10 +95,9 @@ public class VentanaUsuarios extends JFrame {
 
         btnCrearUsuario = new JButton("Crear usuario");
         btnCrearUsuario.addActionListener( e -> {
-            dispose();
-            FormularioMesero form = new FormularioMesero( restaurante, null );
-            form.pack();
-            form.setVisible(true);
+            // FormularioMesero form = new FormularioMesero( restaurante, null );
+            // form.pack();
+            // form.setVisible(true);
         } );
 
         panelIzquierdo.add( panelBusqueda );
@@ -126,7 +120,7 @@ public class VentanaUsuarios extends JFrame {
 
         panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
 
-        getContentPane().add(panel);
+        add(panel);
 
     }
 
@@ -159,6 +153,7 @@ public class VentanaUsuarios extends JFrame {
                     break;
             }
         }
+        VentanaApp.getInstancia().pack();
         repaint();
     }
 

@@ -6,6 +6,7 @@ import configuraciones.ManejadorUsuarios;
 import gui.VentanaApp;
 import modelos.Platillo;
 import modelos.Restaurante;
+import modelos.usuarios.Administrador;
 import modelos.usuarios.Usuario;
 
 /**
@@ -45,7 +46,8 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             VentanaApp app = VentanaApp.crearInstancia(res);
             app.setVisible(true);
-            app.crearSesion(new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
+            app.pack();
+            app.crearSesion(new Administrador( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
             
             // FormularioMesero form = new FormularioMesero(res, new Usuario( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'H', "55-1111-3300", "GamaRL", "123" ));
             // // FormularioMesero form = new FormularioMesero(res, null);

@@ -86,6 +86,9 @@ public class VentanaApp extends JFrame {
 
     panel.removeAll();
     panel.add("Inicio", new Inicio(restaurante, usuario));
+    if ( usuario.esAdmin() ) {
+      panel.add( "Usuarios", new VentanaUsuarios(restaurante, usuario) );
+    }
     panel.add("Logout", new JPanel());
     setSize(600, 400);
   }
