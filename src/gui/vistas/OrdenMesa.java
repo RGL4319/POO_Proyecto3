@@ -25,7 +25,8 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
   }
 
   @Override
-  public Component getTableCellRendererComponent(JTable table, Object obj, boolean isSelected, boolean isFocused, int row, int col) {
+  public Component getTableCellRendererComponent(JTable table, Object obj, boolean isSelected, boolean isFocused,
+      int row, int col) {
 
     setText((obj == null) ? "" : obj.toString());
 
@@ -104,8 +105,9 @@ public class OrdenMesa extends JPanel {
 
   /**
    * Constructor de la clase
+   *
    * @param restaurante el restaurante asociado al programa
-   * @param mesa la mesa de la orden
+   * @param mesa        la mesa de la orden
    */
   public OrdenMesa(Restaurante restaurante, Usuario usuario, Mesa mesa) {
     this.restaurante = restaurante;
@@ -114,13 +116,14 @@ public class OrdenMesa extends JPanel {
 
     crearTabla();
 
-    JScrollPane panel = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    JScrollPane panel = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     panel.setPreferredSize(new Dimension(500, 200));
     add(panel);
   }
 
   private void crearTabla() {
-    String[] identifier = {"Platillo", "Precio", "Cantidad", "Total", "Eliminar"};
+    String[] identifier = { "Platillo", "Precio", "Cantidad", "Total", "Eliminar" };
 
     modelo = new DefaultTableModel() {
 
@@ -144,7 +147,7 @@ public class OrdenMesa extends JPanel {
       if (e.getColumn() != 2)
         return;
 
-      String nombre = (String)tabla.getValueAt(e.getFirstRow(), 0);
+      String nombre = (String) tabla.getValueAt(e.getFirstRow(), 0);
 
       for (Platillo p : mesa.getOrden().getPlatillos().keySet()) {
 
@@ -172,7 +175,7 @@ public class OrdenMesa extends JPanel {
   }
 
   public void agregarPlatillo(Platillo platillo) {
-    Object[] data = {platillo.getNombre(), platillo.getPrecio(), 1 , platillo.getPrecio(), "Eliminar"};
+    Object[] data = { platillo.getNombre(), platillo.getPrecio(), 1, platillo.getPrecio(), "Eliminar" };
 
     if (mesa.getOrden() == null)
       mesa.setOrden(new Orden(usuario));

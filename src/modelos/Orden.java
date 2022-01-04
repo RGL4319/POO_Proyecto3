@@ -3,19 +3,18 @@ package modelos;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import modelos.usuarios.Usuario;
 
 public class Orden implements Serializable {
     
-    private static int numOrdenes = 0;
-
-    private int id;
+    private UUID id;
     private Usuario servidor;
     private Map<Platillo, Integer> platillos;
 
     public Orden ( Usuario servidor ) {
-        this.id = ++numOrdenes;
+        this.id = UUID.randomUUID();
 
         this.servidor = servidor;
         platillos = new LinkedHashMap<>();
@@ -48,7 +47,7 @@ public class Orden implements Serializable {
      * Método de acceso de consulta para el atributo 'id' de la orden
      * @return el 'id' de la orden
      */
-    public int getId() {
+    public UUID getId() {
       return id;
     }
 }

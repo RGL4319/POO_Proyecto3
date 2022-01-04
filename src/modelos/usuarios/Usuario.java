@@ -3,17 +3,19 @@ package modelos.usuarios;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.UUID;
 
 import modelos.Mesa;
 import modelos.Orden;
 import modelos.Ticket;
 
-public class Usuario implements Serializable {
+public abstract class Usuario implements Serializable {
 
     private static int numUsuarios;
 
+    private UUID id;
+    //private int id;
     private int numVentas;
-    private int id;
     private String nombre;
     private LocalDate fechaNacimiento;
     private char sexo;
@@ -24,7 +26,8 @@ public class Usuario implements Serializable {
     
 
     public Usuario(String nombre, LocalDate fechaNacimiento, char sexo, String telefono, String usuario, String password) {
-        this.id = ++numUsuarios;
+        //this.id = ++numUsuarios;
+        this.id = UUID.randomUUID();
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
@@ -68,12 +71,8 @@ public class Usuario implements Serializable {
         this.numVentas = numVentas;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {

@@ -1,15 +1,12 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
 import configuraciones.ManejadorRestaurante;
 import configuraciones.ManejadorUsuarios;
 import gui.VentanaApp;
-import modelos.Platillo;
 import modelos.Restaurante;
 import modelos.usuarios.Administrador;
-import modelos.usuarios.Usuario;
 import repositorio.RepositorioRestaurante;
 
 /**
@@ -22,7 +19,7 @@ public class Main {
      * @param args Parámetros de la línea de comando.
      */
     public static void main(String[] args) {
-        // ManejadorUsuarios.reescribirArchivo();
+        ManejadorUsuarios.reescribirArchivo();
 
         ManejadorRestaurante.reescribirArchivo();
 

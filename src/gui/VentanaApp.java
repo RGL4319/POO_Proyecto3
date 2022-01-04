@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.time.LocalDate;
 
 import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
@@ -9,15 +8,14 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 
+import gui.vistas.AdministracionUsuarios;
+import gui.vistas.FormularioMesero;
 import gui.vistas.Inicio;
 import gui.vistas.Login;
 import modelos.Restaurante;
-import modelos.usuarios.Administrador;
 import modelos.usuarios.Usuario;
 
 public class VentanaApp extends JFrame {
@@ -25,7 +23,7 @@ public class VentanaApp extends JFrame {
   private JTabbedPane panel;
   private JLabel nombreUsuario;
 
-  private VentanaUsuarios buscador;
+  private AdministracionUsuarios buscador;
   private FormularioMesero formulario;
 
   private Restaurante restaurante;
@@ -98,7 +96,7 @@ public class VentanaApp extends JFrame {
     if ( usuario.esAdmin() ) {
       JPanel panelUsuarios = new JPanel();
 
-      buscador = new VentanaUsuarios(restaurante, usuario);
+      buscador = new AdministracionUsuarios(restaurante, usuario);
       formulario = new FormularioMesero(restaurante);
 
       panelUsuarios.add(buscador);
@@ -123,7 +121,6 @@ public class VentanaApp extends JFrame {
     panelOpcionesLogout.add(btnNo);
     contenedor.add( panelOpcionesLogout );
     panelLogout.add( contenedor );
-
 
     panel.add("Logout", panelLogout);
     // panel.addChangeListener( e -> {
