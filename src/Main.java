@@ -28,6 +28,10 @@ public class Main {
 
         var restaurante = RepositorioRestaurante.getRestaurante();
 
+        lanzarLogin(restaurante);
+    }
+
+    public static void lanzarLogin( Restaurante restaurante ){
         SwingUtilities.invokeLater(() -> {
             VentanaApp app = VentanaApp.crearInstancia(restaurante);
             app.setVisible(true);
