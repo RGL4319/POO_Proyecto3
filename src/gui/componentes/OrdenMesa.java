@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import gui.vistas.Inicio;
 import modelos.Mesa;
 import modelos.Orden;
 import modelos.Platillo;
@@ -93,6 +94,11 @@ public class OrdenMesa extends JPanel {
   private Usuario usuario;
 
   /**
+   * El panel de inicio asociado al componente
+   */
+  private Inicio inicio;
+
+  /**
    * La mesa asociada con la orden
    */
   private Mesa mesa;
@@ -113,20 +119,16 @@ public class OrdenMesa extends JPanel {
    * @param restaurante el restaurante asociado al programa
    * @param mesa        la mesa de la orden
    */
-  public OrdenMesa(Restaurante restaurante, Usuario usuario, Mesa mesa) {
+  public OrdenMesa(Restaurante restaurante, Usuario usuario, Mesa mesa, Inicio inicio) {
     this.restaurante = restaurante;
     this.usuario = usuario;
+    this.inicio = inicio;
     this.mesa = mesa;
 
     crearTabla();
-
-    JScrollPane panel = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    panel.setPreferredSize(new Dimension(500, 200));
-    add(panel);
   }
 
-  private void crearTabla() {
+  public void crearTabla() {
     String[] identifier = { "Platillo", "Precio", "Cantidad", "Total", "Eliminar" };
 
     modelo = new DefaultTableModel() {
@@ -176,20 +178,33 @@ public class OrdenMesa extends JPanel {
         }
       }
     });
+
+    JScrollPane panel = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+    removeAll();
+
+    add(panel);
+    
+    panel.setPreferredSize(new Dimension(500, 200));
   }
 
   public void agregarPlatillo(Platillo platillo) {
     if ( platillo == null )
       return;
 
-    if (mesa.getOrden() == null)
+    if (mesa.getOrden() == null) {
       mesa.setOrden(new Orden(usuario));
+
+      int index = restaurante.getMesas().indexOf(mesa);
+      restaurante.getMesas().get(index).ocupar();
+      inicio.configurarComboMesas();
+    }
 
     if (mesa.getOrden().getPlatillos().containsKey(platillo))
       return;
 
     Object[] data = { platillo.getNombre(), platillo.getPrecio(), 1, platillo.getPrecio(), "Eliminar" };
-
 
     modelo.addRow(data);
 
@@ -200,5 +215,9 @@ public class OrdenMesa extends JPanel {
     // Se debe eliminar las filas de la tabla, cobrar generar ticket, y desocupar la mesa
     // tabla.removeRowSelectionInterval(0, tabla.getRowCount() - 1);
     System.out.println("Finalizó la orden. Se debe de cobrar.");
+  }
+
+  public void setMesa(Mesa mesa) {
+    this.mesa = mesa;
   }
 }

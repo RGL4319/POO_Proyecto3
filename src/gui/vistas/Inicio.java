@@ -1,5 +1,7 @@
 package gui.vistas;
 
+import java.awt.event.ItemEvent;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
@@ -39,6 +41,8 @@ public class Inicio extends JPanel {
    */
   private Usuario usuario;
 
+  private BusquedaPlatillos busquedaPlatillos;
+
   /**
    * Constructor de la clase
    * 
@@ -68,24 +72,31 @@ public class Inicio extends JPanel {
 
     configurarComboMesas();
 
-    comboMesa.addActionListener((e) -> {
+    OrdenMesa ordenMesa = new OrdenMesa(restaurante, usuario, (Mesa)comboMesa.getSelectedItem(), this);
+    busquedaPlatillos = new BusquedaPlatillos(restaurante, ordenMesa);
+
+    comboMesa.addItemListener(e -> {
+      if (e.getStateChange() == ItemEvent.SELECTED) {
+        System.out.println(((Mesa)e.getItem()).toString()  + " :D");
+        ordenMesa.setMesa((Mesa)e.getItem());
+        ordenMesa.crearTabla();
+      }
     });
 
     filtroMesas.add(comboMesa);
     filtroMesas.add(checkFiltroOcupadas);
     filtroMesas.add(checkFiltroDesocupadas);
 
-    OrdenMesa ordenMesa = new OrdenMesa(restaurante, usuario, restaurante.getMesas().get(0));
 
     add(filtroMesas);
-    add(new BusquedaPlatillos(restaurante, ordenMesa));
+    add(busquedaPlatillos);
     add(ordenMesa);
   }
 
   /**
    * Configura las opciones de la selección de mesas
    */
-  private void configurarComboMesas() {
+  public void configurarComboMesas() {
     boolean ocupadas = checkFiltroOcupadas.isSelected();
     boolean desocupadas = checkFiltroDesocupadas.isSelected();
 
@@ -104,7 +115,7 @@ public class Inicio extends JPanel {
     if (comboMesa.getItemCount() == 0) {
       // TODO: Manejo de ComboBox Vacío
     } else {
-      comboMesa.setSelectedIndex(0);
+      //comboMesa.setSelectedIndex(0);
     }
   }
 }
