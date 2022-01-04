@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
+import gui.vistas.AdministracionUsuarios;
+import gui.vistas.FormularioMesero;
 import gui.vistas.Inicio;
 import gui.vistas.Login;
 import modelos.Restaurante;
@@ -25,7 +27,7 @@ public class VentanaApp extends JFrame {
   private JTabbedPane panel;
   private JLabel nombreUsuario;
 
-  private VentanaUsuarios buscador;
+  private AdministracionUsuarios buscador;
   private FormularioMesero formulario;
 
   private Restaurante restaurante;
@@ -98,7 +100,7 @@ public class VentanaApp extends JFrame {
     if ( usuario.esAdmin() ) {
       JPanel panelUsuarios = new JPanel();
 
-      buscador = new VentanaUsuarios(restaurante, usuario);
+      buscador = new AdministracionUsuarios(restaurante, usuario);
       formulario = new FormularioMesero(restaurante);
 
       panelUsuarios.add(buscador);

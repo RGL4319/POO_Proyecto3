@@ -1,15 +1,11 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
 import configuraciones.ManejadorRestaurante;
-import configuraciones.ManejadorUsuarios;
 import gui.VentanaApp;
-import modelos.Platillo;
 import modelos.Restaurante;
 import modelos.usuarios.Administrador;
-import modelos.usuarios.Usuario;
 import repositorio.RepositorioRestaurante;
 
 /**
@@ -24,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         // ManejadorUsuarios.reescribirArchivo();
 
-        ManejadorRestaurante.reescribirArchivo();
+        // ManejadorRestaurante.reescribirArchivo();
 
         var restaurante = RepositorioRestaurante.getRestaurante();
 
