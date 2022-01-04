@@ -1,5 +1,6 @@
 package gui.vistas;
 
+import java.awt.Color;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -46,19 +47,22 @@ public class AdministracionUsuarios extends JPanel {
   private void crearComponentes() {
 
     JPanel panel = new JPanel();
-    panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
     Box panelIzquierdo = Box.createVerticalBox();
 
     Box panelBusqueda = Box.createHorizontalBox();
 
     campoBusqueda = new JTextField();
-    campoBusqueda.setColumns(20);
+    campoBusqueda.setColumns(10);
 
     btnBuscar = new JButton("Buscar");
     btnBuscar.addActionListener((e) -> {
       cargarUsuarios();
     });
+
+    btnBuscar.setBackground( new Color( 9, 150, 47 ) );
+    btnBuscar.setForeground( Color.WHITE );
 
     panelBusqueda.add(campoBusqueda);
     panelBusqueda.add(Box.createHorizontalStrut(30));
@@ -78,6 +82,11 @@ public class AdministracionUsuarios extends JPanel {
     panelFiltro.add(filtros);
 
     btnCrearUsuario = new JButton("Crear usuario");
+
+    btnCrearUsuario.setBackground( new Color( 10, 87, 196 ) );
+
+    btnCrearUsuario.setForeground( Color.WHITE );
+    
     btnCrearUsuario.addActionListener(e -> {
       VentanaApp.getInstancia().toggleVistasUsuarios();
       VentanaApp.getInstancia().getFormulario().setUsuario(null);
@@ -97,7 +106,7 @@ public class AdministracionUsuarios extends JPanel {
     panelDerecho.add(panelResultados);
 
     panel.add(panelIzquierdo);
-    panel.add(Box.createHorizontalStrut(30));
+    panel.add(Box.createVerticalStrut(20));
     panel.add(panelDerecho);
 
     panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));

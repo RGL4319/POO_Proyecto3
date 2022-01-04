@@ -1,5 +1,6 @@
 package gui.vistas;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
@@ -26,6 +27,11 @@ public class Logout extends JPanel {
 
     JButton btnSi = new JButton("Sí");
     JButton btnNo = new JButton("No");
+
+    btnSi.setBackground( new Color( 9, 150, 47 ) );
+    btnNo.setBackground( Color.RED );
+    btnSi.setForeground( Color.WHITE );
+    btnNo.setForeground( Color.WHITE );
 
     btnSi.addActionListener(e -> {
       VentanaApp.getInstancia().crearLogin();

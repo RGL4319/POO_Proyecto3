@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -69,6 +70,8 @@ public class VentanaApp extends JFrame {
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
+    ImageIcon icon = new ImageIcon("imagenes/quesadilla.png");  
+    setIconImage(icon.getImage());
     setTitle(restaurante.getNombre() + " - Iniciar sesión");
 
     setSize(400, 200);
@@ -121,8 +124,7 @@ public class VentanaApp extends JFrame {
   public void toggleVistasUsuarios() {
       formulario.setVisible(!formulario.isVisible());
       buscador.setVisible(!buscador.isVisible());
-
-      pack();
+      // pack();
   }
 
   public FormularioMesero getFormulario() {

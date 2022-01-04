@@ -175,6 +175,8 @@ public class OrdenMesa extends JPanel {
   }
 
   public void agregarPlatillo(Platillo platillo) {
+    if ( platillo == null )
+      return;
     Object[] data = { platillo.getNombre(), platillo.getPrecio(), 1, platillo.getPrecio(), "Eliminar" };
 
     if (mesa.getOrden() == null)
@@ -183,5 +185,11 @@ public class OrdenMesa extends JPanel {
     modelo.addRow(data);
 
     mesa.getOrden().agregarPlatillo(platillo);
+  }
+
+  public void finalizarOrden() {
+    // Se debe eliminar las filas de la tabla, cobrar generar ticket, y desocupar la mesa
+    // tabla.removeRowSelectionInterval(0, tabla.getRowCount() - 1);
+    System.out.println("Finalizó la orden. Se debe de cobrar.");
   }
 }

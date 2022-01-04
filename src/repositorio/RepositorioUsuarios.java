@@ -40,7 +40,7 @@ public class RepositorioUsuarios {
             File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
             ObjectOutputStream s = new ObjectOutputStream( new FileOutputStream(ruta) );
             for ( Usuario u : usuarios) {
-                s.writeObject( !nuevo && usuario.getId() == u.getId() ? usuario : u );
+                s.writeObject( !nuevo && usuario.getId().equals(u.getId()) ? usuario : u );
             }
             if ( nuevo )
                 s.writeObject( usuario );

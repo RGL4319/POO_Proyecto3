@@ -1,5 +1,7 @@
 package gui.componentes;
 
+import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,7 +30,6 @@ public class BusquedaPlatillos extends JPanel {
 
   private void crearComponentes() {
     JLabel labelBusqueda = new JLabel("Inserta un platillo");
-    Box contenedor = Box.createVerticalBox();
 
     Box panelBusqueda = Box.createHorizontalBox();
     busquedaPlatillos = new JComboBox<>();
@@ -43,6 +44,13 @@ public class BusquedaPlatillos extends JPanel {
     busquedaPlatillos.setSelectedItem(null);
 
     JButton btnAgregar = new JButton("Agregar");
+    JButton btnFinalizarOrden = new JButton("Finalizar orden");
+
+    btnAgregar.setBackground( new Color( 9, 150, 47 ) );
+    btnFinalizarOrden.setBackground( new Color( 196, 153, 10 ) );
+    
+    btnAgregar.setForeground( Color.WHITE );
+    btnFinalizarOrden.setForeground( Color.WHITE );
 
     // TODO: Detectar cambio de platillo seleccionado
     busquedaPlatillos.addPropertyChangeListener(e -> {
@@ -60,15 +68,21 @@ public class BusquedaPlatillos extends JPanel {
       }
     });
 
+    btnFinalizarOrden.addActionListener( e -> {
+      int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea finalizar la orden?", "Finalizar orden", JOptionPane.YES_NO_OPTION);
+      if ( respuesta == JOptionPane.YES_OPTION ) {
+        guiOrden.finalizarOrden();
+      }
+    } );
+
     panelBusqueda.add(labelBusqueda);
     panelBusqueda.add(Box.createHorizontalStrut(5));
     panelBusqueda.add(busquedaPlatillos);
     panelBusqueda.add(Box.createHorizontalStrut(5));
     panelBusqueda.add(btnAgregar);
+    panelBusqueda.add(Box.createHorizontalStrut(10));
+    panelBusqueda.add(btnFinalizarOrden);
 
-    contenedor.add(panelBusqueda);
-    contenedor.add(descripcion);
-
-    add(contenedor);
+    add(panelBusqueda);
   }
 }
