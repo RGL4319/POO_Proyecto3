@@ -1,5 +1,7 @@
 package gui.componentes;
 
+import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -39,6 +41,12 @@ public class BusquedaPlatillos extends JPanel {
 
     JButton btnAgregar = new JButton("Agregar");
     JButton btnFinalizarOrden = new JButton("Finalizar orden");
+
+    btnAgregar.setBackground( new Color( 9, 150, 47 ) );
+    btnFinalizarOrden.setBackground( new Color( 196, 153, 10 ) );
+    
+    btnAgregar.setForeground( Color.WHITE );
+    btnFinalizarOrden.setForeground( Color.WHITE );
 
     btnAgregar.addActionListener(e -> {
       Platillo pSeleccionado = (Platillo)busquedaPlatillos.getSelectedItem();

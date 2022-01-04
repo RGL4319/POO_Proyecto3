@@ -1,5 +1,6 @@
 package gui.vistas;
 
+import java.awt.Color;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -60,6 +61,9 @@ public class AdministracionUsuarios extends JPanel {
       cargarUsuarios();
     });
 
+    btnBuscar.setBackground( new Color( 9, 150, 47 ) );
+    btnBuscar.setForeground( Color.WHITE );
+
     panelBusqueda.add(campoBusqueda);
     panelBusqueda.add(Box.createHorizontalStrut(30));
     panelBusqueda.add(btnBuscar);
@@ -78,6 +82,11 @@ public class AdministracionUsuarios extends JPanel {
     panelFiltro.add(filtros);
 
     btnCrearUsuario = new JButton("Crear usuario");
+
+    btnCrearUsuario.setBackground( new Color( 10, 87, 196 ) );
+
+    btnCrearUsuario.setForeground( Color.WHITE );
+    
     btnCrearUsuario.addActionListener(e -> {
       VentanaApp.getInstancia().toggleVistasUsuarios();
       VentanaApp.getInstancia().getFormulario().setUsuario(null);

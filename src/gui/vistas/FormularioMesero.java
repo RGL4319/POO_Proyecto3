@@ -1,5 +1,6 @@
 package gui.vistas;
 
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -200,6 +201,11 @@ public class FormularioMesero extends JPanel {
     btnRegresar.addActionListener(e -> {
       VentanaApp.getInstancia().toggleVistasUsuarios();
     });
+
+    btnAccion.setBackground( new Color( 9, 150, 47 ) );
+    btnRegresar.setBackground( Color.RED );
+    btnAccion.setForeground( Color.WHITE );
+    btnRegresar.setForeground( Color.WHITE );
 
     Box cajaBotones = Box.createHorizontalBox();
 
