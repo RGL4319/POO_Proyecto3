@@ -137,6 +137,7 @@ public class OrdenMesa extends JPanel {
 
     tabla = new JTable();
     tabla.setModel(modelo);
+    tabla.getTableHeader().setReorderingAllowed(false);
 
     tabla.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());
     tabla.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JTextField()));
