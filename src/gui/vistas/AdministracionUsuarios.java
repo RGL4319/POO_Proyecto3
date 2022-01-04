@@ -47,14 +47,14 @@ public class AdministracionUsuarios extends JPanel {
   private void crearComponentes() {
 
     JPanel panel = new JPanel();
-    panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
     Box panelIzquierdo = Box.createVerticalBox();
 
     Box panelBusqueda = Box.createHorizontalBox();
 
     campoBusqueda = new JTextField();
-    campoBusqueda.setColumns(20);
+    campoBusqueda.setColumns(10);
 
     btnBuscar = new JButton("Buscar");
     btnBuscar.addActionListener((e) -> {
@@ -106,7 +106,7 @@ public class AdministracionUsuarios extends JPanel {
     panelDerecho.add(panelResultados);
 
     panel.add(panelIzquierdo);
-    panel.add(Box.createHorizontalStrut(30));
+    panel.add(Box.createVerticalStrut(20));
     panel.add(panelDerecho);
 
     panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
