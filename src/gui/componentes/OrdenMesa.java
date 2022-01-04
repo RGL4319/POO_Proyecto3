@@ -1,4 +1,4 @@
-package gui.vistas;
+package gui.componentes;
 
 import java.awt.Color;
 import java.awt.Component;

@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import gui.componentes.BusquedaPlatillos;
+import gui.componentes.OrdenMesa;
 import modelos.Mesa;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
