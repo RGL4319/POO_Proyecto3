@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
 import javax.swing.Box;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +14,7 @@ import gui.vistas.AdministracionUsuarios;
 import gui.vistas.FormularioMesero;
 import gui.vistas.Inicio;
 import gui.vistas.Login;
+import gui.vistas.Logout;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 
@@ -107,28 +107,15 @@ public class VentanaApp extends JFrame {
       panel.add( "Usuarios",  panelUsuarios);
     }
 
-    JPanel panelLogout = new JPanel();
-    Box contenedor = Box.createVerticalBox();
-    contenedor.add( new JLabel("¿Seguro que quieres cerrar sesión?") );
-    Box panelOpcionesLogout = Box.createHorizontalBox();
-    JButton btnSi = new JButton("Sí");
-    JButton btnNo = new JButton("No");
-    btnSi.addActionListener( e -> {
-      VentanaApp.getInstancia().crearLogin();
-    } );
-    panelOpcionesLogout.add(btnSi);
-    panelOpcionesLogout.add(Box.createHorizontalStrut(20));
-    panelOpcionesLogout.add(btnNo);
-    contenedor.add( panelOpcionesLogout );
-    panelLogout.add( contenedor );
+    panel.add("Logout", new Logout());
 
-    panel.add("Logout", panelLogout);
-    // panel.addChangeListener( e -> {
-    //   if ( panel.getTabCount() - panel.getSelectedIndex() == 1 ) {
-    //     JOptionPane.showMessageDialog(null, "¿Seguro que quieres cerrar sesión?", "Question", JOptionPane.QUESTION_MESSAGE);
-    //   }
-    // } );
     setSize(600, 400);
+  }
+
+  public void seleccionarTab(int index) {
+    if (index >= 0 && index < panel.getTabCount()) {
+      panel.setSelectedIndex(index);
+    }
   }
 
   public void toggleVistasUsuarios() {
