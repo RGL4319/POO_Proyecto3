@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.time.LocalDate;
 
 import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
@@ -9,17 +8,14 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 
 import gui.vistas.AdministracionUsuarios;
 import gui.vistas.FormularioMesero;
 import gui.vistas.Inicio;
 import gui.vistas.Login;
 import modelos.Restaurante;
-import modelos.usuarios.Administrador;
 import modelos.usuarios.Usuario;
 
 public class VentanaApp extends JFrame {
@@ -125,7 +121,6 @@ public class VentanaApp extends JFrame {
     panelOpcionesLogout.add(btnNo);
     contenedor.add( panelOpcionesLogout );
     panelLogout.add( contenedor );
-
 
     panel.add("Logout", panelLogout);
     // panel.addChangeListener( e -> {

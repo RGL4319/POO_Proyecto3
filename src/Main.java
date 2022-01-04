@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import javax.swing.SwingUtilities;
 
 import configuraciones.ManejadorRestaurante;
+import configuraciones.ManejadorUsuarios;
 import gui.VentanaApp;
 import modelos.Restaurante;
 import modelos.usuarios.Administrador;
@@ -18,9 +19,9 @@ public class Main {
      * @param args Parámetros de la línea de comando.
      */
     public static void main(String[] args) {
-        // ManejadorUsuarios.reescribirArchivo();
+        ManejadorUsuarios.reescribirArchivo();
 
-        // ManejadorRestaurante.reescribirArchivo();
+        ManejadorRestaurante.reescribirArchivo();
 
         var restaurante = RepositorioRestaurante.getRestaurante();
 

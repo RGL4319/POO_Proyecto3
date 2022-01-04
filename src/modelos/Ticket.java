@@ -5,12 +5,35 @@ import java.io.Serializable;
 import modelos.usuarios.Usuario;
 
 public class Ticket implements Serializable {
-    
+
+    /**
+     * El valor del 'iva' que se usa para la clase
+     */
     private final static double iva = 0.16;
+
+    /**
+     * La mesa con la que se asoció el Ticket
+     */
     private Mesa mesa;
+
+    /**
+     * El sub-total a pagar
+     */
     private double subtotal;
+
+    /**
+     * El total a pagar
+     */
     private double total;
+
+    /**
+     * Cantidad de propina
+     */
     private double propina;
+
+    /**
+     * Si se pagó con efectivo o fue un pago con tarjeta
+     */
     private boolean esPagoConEfectivo;
 
     public Ticket( Mesa mesa, double propina, boolean esPagoConEfectivo) {
@@ -49,5 +72,4 @@ public class Ticket implements Serializable {
     public boolean isEsPagoConEfectivo() {
         return esPagoConEfectivo;
     }    
-
 }
