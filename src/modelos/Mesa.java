@@ -35,6 +35,10 @@ public class Mesa implements Serializable {
         return orden;
     }
 
+    public void setOrden(Orden orden) {
+      this.orden = orden;
+    }
+
     public void borrarOrden () {
         orden = null;
     }

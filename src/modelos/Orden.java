@@ -29,6 +29,9 @@ public class Orden implements Serializable {
     public Map<Platillo, Integer> getPlatillos () {
         return platillos;
     }
+     public void setNumDePlatillo(Platillo platillo, int valor) {
+         platillos.put(platillo, valor);
+     }
 
     public Usuario getServidor () {
         return servidor;

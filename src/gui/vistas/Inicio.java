@@ -6,6 +6,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import gui.componentes.BusquedaPlatillos;
 import modelos.Mesa;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
@@ -72,8 +73,11 @@ public class Inicio extends JPanel {
         filtroMesas.add(checkFiltroOcupadas);
         filtroMesas.add(checkFiltroDesocupadas);
 
+        OrdenMesa ordenMesa = new OrdenMesa(restaurante, usuario, restaurante.getMesas().get(0));
+
         add(filtroMesas);
-        add(new OrdenMesa(restaurante, restaurante.getMesas().get(0)));
+        add(new BusquedaPlatillos(restaurante, ordenMesa));
+        add(ordenMesa);
     }
 
     /**
