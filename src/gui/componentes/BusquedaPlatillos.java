@@ -38,6 +38,7 @@ public class BusquedaPlatillos extends JPanel {
     busquedaPlatillos.setSelectedItem(null);
 
     JButton btnAgregar = new JButton("Agregar");
+    JButton btnFinalizarOrden = new JButton("Finalizar orden");
 
     btnAgregar.addActionListener(e -> {
       Platillo pSeleccionado = (Platillo)busquedaPlatillos.getSelectedItem();
@@ -49,11 +50,20 @@ public class BusquedaPlatillos extends JPanel {
       }
     });
 
+    btnFinalizarOrden.addActionListener( e -> {
+      int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea finalizar la orden?", "Finalizar orden", JOptionPane.YES_NO_OPTION);
+      if ( respuesta == JOptionPane.YES_OPTION ) {
+        guiOrden.finalizarOrden();
+      }
+    } );
+
     contenedor.add(labelBusqueda);
     contenedor.add(Box.createHorizontalStrut(5));
     contenedor.add(busquedaPlatillos);
     contenedor.add(Box.createHorizontalStrut(5));
     contenedor.add(btnAgregar);
+    contenedor.add(Box.createHorizontalStrut(10));
+    contenedor.add(btnFinalizarOrden);
 
     add(contenedor);
   }
