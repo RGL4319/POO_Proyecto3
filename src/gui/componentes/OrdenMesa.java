@@ -159,6 +159,7 @@ public class OrdenMesa extends JPanel {
           } catch (NumberFormatException ex) {
 
           } finally {
+
             if (num < 1) {
               num = 1;
               tabla.setValueAt(num, e.getFirstRow(), 2);
@@ -168,7 +169,6 @@ public class OrdenMesa extends JPanel {
 
             tabla.setValueAt(num * p.getPrecio(), e.getFirstRow(), 3);
           }
-
         }
       }
     });
@@ -177,10 +177,15 @@ public class OrdenMesa extends JPanel {
   public void agregarPlatillo(Platillo platillo) {
     if ( platillo == null )
       return;
-    Object[] data = { platillo.getNombre(), platillo.getPrecio(), 1, platillo.getPrecio(), "Eliminar" };
 
     if (mesa.getOrden() == null)
       mesa.setOrden(new Orden(usuario));
+
+    if (mesa.getOrden().getPlatillos().containsKey(platillo))
+      return;
+
+    Object[] data = { platillo.getNombre(), platillo.getPrecio(), 1, platillo.getPrecio(), "Eliminar" };
+
 
     modelo.addRow(data);
 
