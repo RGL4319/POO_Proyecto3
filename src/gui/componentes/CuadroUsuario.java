@@ -1,5 +1,7 @@
 package gui.componentes;
 
+import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -26,6 +28,9 @@ public class CuadroUsuario extends Box{
         datos.add( new JLabel(String.format("Teléfono: %s", usuario.getTelefono())) );
 
         btnEditar = new JButton("Editar");
+
+        btnEditar.setBackground( new Color( 196, 193, 26 ) );
+        btnEditar.setForeground( Color.WHITE );
 
         btnEditar.addActionListener( e -> {
             ventana.limpiarFormulario();

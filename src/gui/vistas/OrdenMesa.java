@@ -1,5 +1,6 @@
 package gui.vistas;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -22,6 +23,9 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
 
   public ButtonRenderer() {
     setOpaque(true);
+    
+    setBackground( new Color( 214, 32, 32 ) );
+    setForeground( Color.WHITE );
   }
 
   @Override
@@ -44,7 +48,7 @@ class ButtonEditor extends DefaultCellEditor {
     super(txt);
     btn = new JButton();
     btn.setOpaque(true);
-
+    
     btn.addActionListener(e -> {
       System.out.println("Eliminar");
       fireEditingStopped();
