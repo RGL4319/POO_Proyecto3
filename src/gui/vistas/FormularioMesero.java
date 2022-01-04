@@ -84,7 +84,7 @@ public class FormularioMesero extends JPanel {
     Box panelNombre = Box.createHorizontalBox();
 
     campoNombre = new JTextField();
-    campoNombre.setColumns(20);
+    campoNombre.setColumns(10);
     JLabel etiquetaNombre = new JLabel("Nombre");
     etiquetaNombre.setLabelFor(campoNombre);
 
@@ -95,7 +95,7 @@ public class FormularioMesero extends JPanel {
     // Creación del campo para el 'usuario'
     Box panelUsuario = Box.createHorizontalBox();
     campoUsuario = new JTextField();
-    campoUsuario.setColumns(20);
+    campoUsuario.setColumns(10);
     JLabel etiquetaUsuario = new JLabel("Usuario");
     etiquetaUsuario.setLabelFor(campoUsuario);
 
@@ -107,7 +107,7 @@ public class FormularioMesero extends JPanel {
     Box panelPassword = Box.createHorizontalBox();
 
     campoPassword = new JPasswordField();
-    campoPassword.setColumns(20);
+    campoPassword.setColumns(10);
     JLabel etiquetaPassword = new JLabel("Contraseña");
     etiquetaPassword.setLabelFor(campoPassword);
 
@@ -154,7 +154,7 @@ public class FormularioMesero extends JPanel {
 
     Box panelFecha = Box.createHorizontalBox();
     campoFecha = new JTextField();
-    campoFecha.setColumns(20);
+    campoFecha.setColumns(10);
     JLabel etiquetaFecha = new JLabel("Fecha de nacimiento");
     etiquetaFecha.setLabelFor(campoFecha);
 

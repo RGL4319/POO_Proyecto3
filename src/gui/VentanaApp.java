@@ -124,8 +124,7 @@ public class VentanaApp extends JFrame {
   public void toggleVistasUsuarios() {
       formulario.setVisible(!formulario.isVisible());
       buscador.setVisible(!buscador.isVisible());
-
-      pack();
+      // pack();
   }
 
   public FormularioMesero getFormulario() {
