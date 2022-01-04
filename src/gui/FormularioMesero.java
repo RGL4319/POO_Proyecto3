@@ -1,5 +1,9 @@
 package gui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -13,7 +17,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import modelos.Restaurante;
+import modelos.usuarios.Mesero;
 import modelos.usuarios.Usuario;
+import repositorio.RepositorioUsuarios;
 
 public class FormularioMesero extends JPanel {
     
@@ -37,13 +43,25 @@ public class FormularioMesero extends JPanel {
         super();
 
         this.restaurante = restaurante;
-        this.editar = usuario != null;
+        this.editar = false;
 
         crearComponentes();
     }
 
     public void setUsuario(Usuario usuario) {
-      this.usuario = usuario;
+        this.usuario = usuario;
+        this.editar = usuario != null;
+        this.btnAccion.setText(editar ? "Guardar" : "Crear");
+        limpiarFormulario();
+    }
+
+    private void limpiarFormulario () {
+        campoNombre.setText( "" );
+        campoUsuario.setText( "" );
+        campoPassword.setText( "" );
+        campoTelefono.setText( "" );
+        campoFecha.setText( "" );
+        rBotonMujer.setSelected(true);
     }
 
     private void crearComponentes() {
@@ -151,14 +169,23 @@ public class FormularioMesero extends JPanel {
         panelSexo.add(rBotonHombre);
 
         //Creación del botón de login
-        btnAccion = new JButton(editar ? "Editar" : "Crear");
+        btnAccion = new JButton(editar ? "Guardar" : "Crear");
         btnAccion.addActionListener((e) -> {
+            List<Usuario> usuarios = RepositorioUsuarios.getUsuarios();
             if ( editar ) {
-                // Acción para editar
+                usuario.setNombre( campoNombre.getText() );
+                usuario.setUsuario( campoUsuario.getText() );
+                usuario.setPassword( new String(campoPassword.getPassword()) );
+                usuario.setFechaNacimiento( LocalDate.parse( campoFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy") ) );
+                usuario.setTelefono( campoTelefono.getText() );
+                usuario.setSexo( rBotonMujer.isSelected() ? 'M' : 'H' );
             }
             else {
-                // Acción para crear
+                usuario = new Mesero(campoNombre.getText(), LocalDate.parse( campoFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy") ), rBotonMujer.isSelected() ? 'M' : 'H', campoTelefono.getText(), campoUsuario.getText(), new String(campoPassword.getPassword()));  
             }
+            RepositorioUsuarios.udpateUsuario(usuarios, usuario, !editar);
+            
+            VentanaApp.getInstancia().toggleVistasUsuarios();
         });
 
         JButton btnRegresar = new JButton("Volver");
@@ -195,6 +222,8 @@ public class FormularioMesero extends JPanel {
         campoUsuario.setText( usuario.getUsuario() );
         campoPassword.setText( usuario.getPassword() );
         campoTelefono.setText( usuario.getTelefono() );
+        System.out.println( usuario.getFechaNacimiento().format( DateTimeFormatter.ofPattern("dd/MM/yyyy") ) );
+        campoFecha.setText( usuario.getFechaNacimiento().format( DateTimeFormatter.ofPattern("dd/MM/yyyy") ) );
         if ( usuario.getSexo() == 'M' )
             rBotonMujer.setSelected(true);
         else

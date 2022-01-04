@@ -134,4 +134,9 @@ public class VentanaUsuarios extends JPanel {
         VentanaApp.getInstancia().pack();
         repaint();
     }
+
+    public void limpiarFormulario () {
+        panelResultados.removeAll();
+        campoBusqueda.setText("");
+    }
 }

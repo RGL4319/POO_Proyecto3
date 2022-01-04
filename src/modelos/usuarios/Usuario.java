@@ -87,6 +87,9 @@ public class Usuario implements Serializable {
     public int getEdad() {
         return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
 
     public char getSexo() {
         return sexo;
@@ -102,6 +105,26 @@ public class Usuario implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean esAdmin() {

@@ -26,6 +26,7 @@ public class CuadroUsuario extends Box{
         btnEditar = new JButton("Editar");
 
         btnEditar.addActionListener( e -> {
+            ventana.limpiarFormulario();
             VentanaApp.getInstancia().toggleVistasUsuarios();
             VentanaApp.getInstancia().getFormulario().setUsuario(usuario);
 
