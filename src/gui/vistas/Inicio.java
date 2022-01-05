@@ -1,9 +1,12 @@
 package gui.vistas;
 
+import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gui.componentes.BusquedaPlatillos;
@@ -30,6 +33,11 @@ public class Inicio extends JPanel {
   private JComboBox<Mesa> comboMesa;
 
   /**
+   * Etiqueta para indicar cuando no hay mesas disponibles
+   */
+  private JLabel noItems;
+
+  /**
    * CheckBox para activar/desactivar las mesas ocupadas
    */
   private JCheckBox checkFiltroOcupadas;
@@ -44,6 +52,9 @@ public class Inicio extends JPanel {
    */
   private Usuario usuario;
 
+  /**
+   * Componente para buscar y seleccionar platillos
+   */
   private BusquedaPlatillos busquedaPlatillos;
 
   /**
@@ -79,14 +90,21 @@ public class Inicio extends JPanel {
 
     ordenMesa = new OrdenMesa(restaurante, usuario, null, this);
     busquedaPlatillos = new BusquedaPlatillos(restaurante, ordenMesa);
+
+    noItems = new JLabel("Sin mesas para mostrar");
+    noItems.setForeground(new Color(214, 32, 32));
+    noItems.setVisible(false);
+
     configurarComboMesas(false);
+
     if (comboMesa.getItemCount() == 0) {
-      // TODO: Manejo de ComboBox Vacío
     } else {
       comboMesa.setSelectedIndex(0);
     }
 
     filtroMesas.add(comboMesa);
+    filtroMesas.add(noItems);
+    filtroMesas.add(Box.createHorizontalStrut(20));
     filtroMesas.add(checkFiltroOcupadas);
     filtroMesas.add(checkFiltroDesocupadas);
 
@@ -111,7 +129,7 @@ public class Inicio extends JPanel {
           ordenMesa.crearTabla();
         }
       });
-    } else {
+    } else if (mantenerSeleccion) {
       anterior = (Mesa) comboMesa.getSelectedItem();
     }
 
@@ -134,18 +152,31 @@ public class Inicio extends JPanel {
         numDesocupadas++;
     }
 
-    comboMesa.addItem(anterior);
-
-
     checkFiltroOcupadas.setText(String.format("Ocupadas (%d)", numOcupadas));
     checkFiltroDesocupadas.setText(String.format("Desocupadas (%d)", numDesocupadas));
 
     comboMesa.setEnabled(true);
 
     if (mantenerSeleccion) {
+      comboMesa.addItem(anterior);
       comboMesa.setSelectedItem(anterior);
     } else {
-      comboMesa.setSelectedIndex(0);
+      try {
+        comboMesa.setSelectedIndex(0);
+      } catch (IllegalArgumentException ex) {
+      }
+    }
+
+    if (comboMesa.getItemCount() == 0) {
+      comboMesa.setVisible(false);
+      noItems.setVisible(true);
+      ordenMesa.setVisible(false);
+      busquedaPlatillos.setVisible(false);
+    } else {
+      comboMesa.setVisible(true);
+      noItems.setVisible(false);
+      ordenMesa.setVisible(true);
+      busquedaPlatillos.setVisible(true);
     }
   }
 }

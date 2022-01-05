@@ -101,7 +101,6 @@ public class BusquedaPlatillos extends JPanel {
 
       if (pSeleccionado != null) {
         guiOrden.agregarPlatillo(pSeleccionado);
-        //busquedaPlatillos.removeItem(pSeleccionado);
       } else {
         JOptionPane.showMessageDialog(null, "No has seleccionado algún platillo", "Error", JOptionPane.ERROR_MESSAGE);
       }
