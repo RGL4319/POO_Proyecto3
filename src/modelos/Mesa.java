@@ -3,10 +3,14 @@ package modelos;
 import java.io.Serializable;
 
 /**
- * Clase que contiene la abstracción de una mesa...
+ * Clase que contiene la abstracción de una mesa
+ * Implementa a la interface Serializable 
+ * 
  */
 public class Mesa implements Serializable {
-
+/**
+ * Número de mesa 
+ */
     private int numMesa;
     private boolean ocupada;
     private Orden orden;
@@ -42,7 +46,9 @@ public class Mesa implements Serializable {
     public void borrarOrden() {
         orden = null;
     }
-
+/**
+ * Sobreescritura del métdo toString, propiedades de la mesa (ocupada/desocupada)
+ */
     @Override
     public String toString() {
         return String.format("Mesa: %d (%s)", numMesa, ocupada ? "ocupada" : "desocupada");

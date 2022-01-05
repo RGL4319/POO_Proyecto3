@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * Clase que lleva a la abstracción de un restaurante, implementa a la interface Serializable 
+ */
 public class Restaurante implements Serializable {
 
   /**
@@ -26,7 +28,8 @@ public class Restaurante implements Serializable {
   /**
    * Constructor de la clase
    * 
-   * @param nombre
+   * @param nombre del restaurante 
+   * @param Mesas del  restaurante 
    */
   public Restaurante(String nombre, int numMesas) {
     this.nombre = nombre;
