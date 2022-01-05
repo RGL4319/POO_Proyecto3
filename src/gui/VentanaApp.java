@@ -18,6 +18,7 @@ import javax.swing.JTabbedPane;
 
 import gui.componentes.Grafica;
 import gui.vistas.AdministracionUsuarios;
+import gui.vistas.Estadisticas;
 import gui.vistas.FormularioMesero;
 import gui.vistas.Inicio;
 import gui.vistas.Login;
@@ -36,8 +37,6 @@ import modelos.usuarios.Usuario;
  * @author Ríos Lira, Gamaliel
  */
 public class VentanaApp extends JFrame {
-
-  public static List<Ticket> tickets = new LinkedList<>();
 
   /**
    * Componente que se encarga de mostrar/ocultar las ventanas en la intefaz
@@ -205,7 +204,9 @@ public class VentanaApp extends JFrame {
 
       panel.addTab("Ventas", adminIcon, panelVentas);
     }
+    
 
+    panel.add("Estadísticas", new Estadisticas(restaurante));
     panel.add("Logout", new Logout());
 
     setSize(600, 400);

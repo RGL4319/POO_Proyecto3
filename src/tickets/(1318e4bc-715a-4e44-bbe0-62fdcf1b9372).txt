@@ -1,0 +1,8 @@
+2022-01-05 173037
+1318e4bc-715a-4e44-bbe0-62fdcf1b9372
+Gamaliel R�os
+Mesa 1
+{Spaghetti=1, Enchiladas=1, Refresco=1}
+167.0
+193.72
+Pago con tarjeta.

@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
-import gui.VentanaApp;
 import modelos.Platillo;
 import modelos.Restaurante;
+import modelos.usuarios.Usuario;
 
 class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
 
@@ -57,15 +57,16 @@ class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
 public class BusquedaPlatillos extends JPanel {
 
   private Restaurante restaurante;
-  private JComboBox<Platillo> busquedaPlatillos;
+  private Usuario usuario;
   private OrdenMesa guiOrden;
-  private JLabel descripcion;
+  private JComboBox<Platillo> busquedaPlatillos;
 
-  public BusquedaPlatillos(Restaurante restaurante, OrdenMesa guiOrden) {
+  public BusquedaPlatillos(Restaurante restaurante, Usuario usuario, OrdenMesa guiOrden) {
     super();
 
     this.guiOrden = guiOrden;
     this.restaurante = restaurante;
+    this.usuario = usuario;
 
     crearComponentes();
   }
@@ -75,8 +76,6 @@ public class BusquedaPlatillos extends JPanel {
 
     Box panelBusqueda = Box.createHorizontalBox();
     busquedaPlatillos = new JComboBox<>();
-
-    descripcion = new JLabel("");
 
     for (Platillo p : restaurante.getPlatillos()) {
       busquedaPlatillos.addItem(p);
@@ -97,21 +96,27 @@ public class BusquedaPlatillos extends JPanel {
     busquedaPlatillos.setRenderer(new PlatillosComboBoxRenderer(restaurante));
 
     btnAgregar.addActionListener(e -> {
-      Platillo pSeleccionado = (Platillo) busquedaPlatillos.getSelectedItem();
-
-      if (pSeleccionado != null) {
-        guiOrden.agregarPlatillo(pSeleccionado);
-      } else {
-        JOptionPane.showMessageDialog(null, "No has seleccionado algún platillo", "Error", JOptionPane.ERROR_MESSAGE);
+      if ( guiOrden.getOrden() == null || usuario.getId().equals(guiOrden.getOrden().getServidor().getId()) ) {
+        Platillo pSeleccionado = (Platillo) busquedaPlatillos.getSelectedItem();
+  
+        if (pSeleccionado != null) {
+          guiOrden.agregarPlatillo(pSeleccionado);
+        } else {
+          JOptionPane.showMessageDialog(null, "No has seleccionado algún platillo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
       }
+
     });
 
     btnFinalizarOrden.addActionListener(e -> {
+
+      if ( !usuario.getId().equals(guiOrden.getOrden().getServidor().getId()) )
+        return;
+
       int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea finalizar la orden?", "Finalizar orden",
           JOptionPane.YES_NO_OPTION);
       if (respuesta == JOptionPane.YES_OPTION) {
-        VentanaApp.tickets.add( guiOrden.finalizarOrden() );
-        System.out.println("Tickets: " + VentanaApp.tickets.toString());
+        restaurante.agregarTicket( guiOrden.finalizarOrden() );
         guiOrden.configurarComboMesas(false);
       }
     });

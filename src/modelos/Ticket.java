@@ -1,6 +1,11 @@
 package modelos;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import modelos.usuarios.Usuario;
 
@@ -9,12 +14,17 @@ public class Ticket implements Serializable {
     /**
      * El valor del 'iva' que se usa para la clase
      */
-    private final static double iva = 0.16;
+    private final static double iva = 1.16;
 
     /**
      * La mesa con la que se asoció el Ticket
      */
-    private Mesa mesa;
+    private int mesa;
+
+    /**
+     * La orden del ticket
+     */
+    private Orden orden;
 
     /**
      * El sub-total a pagar
@@ -36,17 +46,36 @@ public class Ticket implements Serializable {
      */
     private boolean esPagoConEfectivo;
 
+    private LocalDateTime fechaHora;
+
     public Ticket( Mesa mesa, double propina, boolean esPagoConEfectivo) {
         this.propina = propina;
-        this.mesa = mesa;
-        this.subtotal = mesa.getOrden().calcularSubtotal();
-        this.total = subtotal * iva;
+        this.mesa = mesa.getNumeroMesa();
+        this.orden = mesa.getOrden();
+        this.subtotal = orden.calcularSubtotal();
+        this.total = subtotal * iva + propina;
         this.esPagoConEfectivo = esPagoConEfectivo;
+        fechaHora = LocalDateTime.now();
         generarTicket();
     }
 
     private void generarTicket () {
-
+        try {
+          //TODO: Incluir fecha y hora en el nombre del archivo
+          BufferedWriter escritor = new BufferedWriter( new FileWriter( new File("tickets/" /*+ fechaHora.toString()*/ + "(" + orden.getId() + ").txt" ) ) );
+          escritor.append(String.valueOf(fechaHora.toString() + "\n"));
+          escritor.append(String.valueOf(orden.getId()) + "\n");
+          escritor.append(String.valueOf(orden.getServidor().getNombre()) + "\n");
+          escritor.append(String.valueOf("Mesa " + mesa) + "\n");
+          escritor.append(String.valueOf(orden.getPlatillos()) + "\n");
+          escritor.append(String.valueOf(subtotal) + "\n");
+          escritor.append(String.valueOf(total) + "\n");
+          escritor.append(String.valueOf("Pago " + (esPagoConEfectivo ? "en efectivo" : "con tarjeta") + "." ) + "\n");
+          escritor.close();
+        } catch (IOException e) {
+            System.out.println("Algo salió mal con la generación del ticket.");
+            e.printStackTrace();
+        }
     }
 
     public static double getIva() {
@@ -58,11 +87,7 @@ public class Ticket implements Serializable {
     }
 
     public Orden getOrden() {
-        return mesa.getOrden();
-    }
-
-    public Usuario getServidor() {
-        return mesa.getOrden().getServidor();
+        return orden;
     }
 
     public double getTotal() {

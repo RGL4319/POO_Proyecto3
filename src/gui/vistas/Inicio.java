@@ -89,7 +89,7 @@ public class Inicio extends JPanel {
     });
 
     ordenMesa = new OrdenMesa(restaurante, usuario, null, this);
-    busquedaPlatillos = new BusquedaPlatillos(restaurante, ordenMesa);
+    busquedaPlatillos = new BusquedaPlatillos(restaurante, usuario, ordenMesa);
 
     noItems = new JLabel("Sin mesas para mostrar");
     noItems.setForeground(new Color(214, 32, 32));
@@ -119,7 +119,7 @@ public class Inicio extends JPanel {
   public void configurarComboMesas(boolean mantenerSeleccion) {
     boolean ocupadas = checkFiltroOcupadas.isSelected();
     boolean desocupadas = checkFiltroDesocupadas.isSelected();
-    Mesa anterior = null;
+    int anterior = -1;
 
     if (comboMesa == null) {
       comboMesa = new JComboBox<>();
@@ -130,7 +130,7 @@ public class Inicio extends JPanel {
         }
       });
     } else if (mantenerSeleccion) {
-      anterior = (Mesa) comboMesa.getSelectedItem();
+      anterior = comboMesa.getSelectedIndex();
     }
 
     comboMesa.setEnabled(false);
@@ -140,7 +140,7 @@ public class Inicio extends JPanel {
     numOcupadas = numDesocupadas = 0;
 
     for (Mesa mesa : restaurante.getMesas()) {
-      if (mesa.estaOcupada() && mesa.getOrden().getServidor().equals(usuario) && ocupadas) {
+      if (mesa.estaOcupada() && ocupadas) {
         comboMesa.addItem(mesa);
       } else if (!mesa.estaOcupada() && desocupadas) {
         comboMesa.addItem(mesa);
@@ -150,6 +150,8 @@ public class Inicio extends JPanel {
         numOcupadas++;
       else
         numDesocupadas++;
+
+      System.out.println(mesa);
     }
 
     checkFiltroOcupadas.setText(String.format("Ocupadas (%d)", numOcupadas));
@@ -158,8 +160,7 @@ public class Inicio extends JPanel {
     comboMesa.setEnabled(true);
 
     if (mantenerSeleccion) {
-      comboMesa.addItem(anterior);
-      comboMesa.setSelectedItem(anterior);
+      comboMesa.setSelectedIndex(anterior);
     } else {
       try {
         comboMesa.setSelectedIndex(0);

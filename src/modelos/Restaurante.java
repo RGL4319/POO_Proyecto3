@@ -3,8 +3,12 @@ package modelos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
+import repositorio.Repositorio;
+import repositorio.RepositorioRestaurante;
 /**
  * Clase que lleva a la abstracción de un restaurante, implementa a la interface Serializable 
  */
@@ -25,6 +29,12 @@ public class Restaurante implements Serializable {
    */
   private Set<Platillo> platillos;
 
+
+  /**
+   * Los tickets generados
+   */
+  private List<Ticket> tickets;
+
   /**
    * Constructor de la clase
    * 
@@ -34,6 +44,7 @@ public class Restaurante implements Serializable {
   public Restaurante(String nombre, int numMesas) {
     this.nombre = nombre;
     this.mesas = new ArrayList<>();
+    this.tickets = new LinkedList<>();
     this.platillos = new HashSet<>();
 
     for (int i = 1; i <= numMesas; i++)
@@ -77,5 +88,14 @@ public class Restaurante implements Serializable {
    */
   public boolean agregarPlatillo(Platillo platillo) {
     return platillos.add(platillo);
+  }
+
+  public void agregarTicket(Ticket ticket) {
+    tickets.add( ticket );
+    RepositorioRestaurante.guardar( this );
+  }
+
+  public List<Ticket> getTickets () {
+    return tickets;
   }
 }

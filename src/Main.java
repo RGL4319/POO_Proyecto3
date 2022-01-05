@@ -32,6 +32,8 @@ public class Main {
 
         var restaurante = RepositorioRestaurante.getRestaurante();
 
+        System.out.println(restaurante.getTickets());
+
         ejecutarAplicacion(restaurante);
     }
 
