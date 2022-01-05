@@ -25,25 +25,72 @@ import modelos.Restaurante;
 import modelos.Ticket;
 import modelos.usuarios.Usuario;
 
+/**
+ * Punto de inicio de la interfaz gráfica. Representa la
+ * ventana que se le mostrará al usuario. Se aplica el patrón
+ * de diseño singleton con la finalidad de tener una única
+ * instancia en todo el programa.
+ * 
+ * @author López Chong, Jorge Antonio
+ * @author Ríos Lira, Gamaliel
+ */
 public class VentanaApp extends JFrame {
 
   public static List<Ticket> tickets = new LinkedList<>();
 
+  /**
+   * Componente que se encarga de mostrar/ocultar las ventanas en la intefaz
+   * gráfica
+   */
   private JTabbedPane panel;
+
+  /**
+   * Etiqueta que muestra el nombre del usuario que utiliza la aplicación
+   */
   private JLabel nombreUsuario;
 
+  /**
+   * Buscador de meseros en la aplicación
+   */
   private AdministracionUsuarios buscador;
+
+  /**
+   * Formulario para la captura/edición de meseros
+   */
   private FormularioMesero formulario;
 
+  /**
+   * El restaurante asociado a la aplicación
+   */
   private Restaurante restaurante;
+
+  /**
+   * El usuario que tiene la sesión activa actualmente
+   */
   private Usuario usuario;
 
+  /**
+   * La única instancia que puede existir de la aplicación
+   */
   private static VentanaApp instancia;
 
+  /**
+   * Método a través del cual se accede a la única instancia
+   * de la clase en el programa
+   * 
+   * @return la ventana
+   */
   public static VentanaApp getInstancia() {
     return instancia;
   }
 
+  /**
+   * Método estático para crear la instancia de la clase. Sólo
+   * se puede crear una instancia en todo el programa.
+   * 
+   * @param restaurante el restaurante asociado a la aplicación
+   * @return la instancia creada o que ya existía anteriormente
+   */
   public static VentanaApp crearInstancia(Restaurante restaurante) {
     if (instancia == null)
       instancia = new VentanaApp(restaurante);
@@ -51,6 +98,12 @@ public class VentanaApp extends JFrame {
     return instancia;
   }
 
+  /**
+   * Constructor de la clase. Se pone en privado con la finalidad de
+   * implementar el patrón de diseño singleton.
+   * 
+   * @param restaurante el restaurante asociado a la aplicación
+   */
   private VentanaApp(Restaurante restaurante) {
 
     JPanel root = new JPanel();
@@ -86,6 +139,10 @@ public class VentanaApp extends JFrame {
     setResizable(false);
   }
 
+  /**
+   * Desactiva todas las pestañas existentes y crea un formulario
+   * de login en la pestaña 'Login'.
+   */
   public void crearLogin() {
     nombreUsuario.setText("No hay usuario");
     nombreUsuario.setForeground(Color.RED);
@@ -95,8 +152,13 @@ public class VentanaApp extends JFrame {
     usuario = null;
   }
 
+  /**
+   * Desactiva el login y crea una serie de pestañas acorde al usuario
+   * que está usando la aplicación.
+   * 
+   * @param usuario el usuario que usa la aplicación
+   */
   public void crearSesion(Usuario usuario) {
-
     this.usuario = usuario;
 
     nombreUsuario.setText(this.usuario.getNombre());
@@ -117,11 +179,12 @@ public class VentanaApp extends JFrame {
 
       panel.add("Usuarios", panelUsuarios);
 
+      //TODO: Eliminar desde aquí
       JPanel panelVentas = new JPanel();
       Box contenedorGrafica = Box.createHorizontalBox();
-      
-      Map<String,Double> a = new LinkedHashMap<>();
-      Map<String,Double> b = new LinkedHashMap<>();
+
+      Map<String, Double> a = new LinkedHashMap<>();
+      Map<String, Double> b = new LinkedHashMap<>();
       a.put("Hola", 0.5);
       a.put("ADIOS", 12.0);
       a.put("Hfsd", 23.32);
@@ -131,13 +194,14 @@ public class VentanaApp extends JFrame {
       b.put("fsdg5435", 23.32);
       b.put("ewfdsdfgdfgda", 243.5);
 
-      contenedorGrafica.add( new Grafica( "Ventas totales por mesero", a ) );
-      contenedorGrafica.add( Box.createHorizontalStrut(30) );
-      contenedorGrafica.add( new Grafica( "Ventas totales por mesa", b ) );
+      contenedorGrafica.add(new Grafica("Ventas totales por mesero", a));
+      contenedorGrafica.add(Box.createHorizontalStrut(30));
+      contenedorGrafica.add(new Grafica("Ventas totales por mesa", b));
 
-      panelVentas.add( contenedorGrafica );
+      panelVentas.add(contenedorGrafica);
+      //TODO: Eliminar hasta acá
 
-      panel.add( "Ventas", panelVentas );
+      panel.add("Ventas", panelVentas);
     }
 
     panel.add("Logout", new Logout());
@@ -145,18 +209,30 @@ public class VentanaApp extends JFrame {
     setSize(600, 400);
   }
 
+  /**
+   * Dado un ínice, selecciona la pestaña que se encuentra
+   * en dicha posición.
+   *
+   * @param index el índica que se seleccionará
+   */
   public void seleccionarTab(int index) {
     if (index >= 0 && index < panel.getTabCount()) {
       panel.setSelectedIndex(index);
     }
   }
 
+  /**
+   * Cambia la pestaña que se ve en la pestaña de usuarios.
+   */
   public void toggleVistasUsuarios() {
     formulario.setVisible(!formulario.isVisible());
     buscador.setVisible(!buscador.isVisible());
-    // pack();
   }
 
+  /**
+   * Método de acceso de consulta al formulario de meseros.
+   * @return el formulario de meseros
+   */
   public FormularioMesero getFormulario() {
     return formulario;
   }

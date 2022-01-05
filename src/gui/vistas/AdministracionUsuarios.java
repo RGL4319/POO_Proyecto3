@@ -101,8 +101,6 @@ public class AdministracionUsuarios extends JPanel {
     Box panelDerecho = Box.createVerticalBox();
 
     panelResultados = Box.createVerticalBox();
-    // JScrollPane scrollPane = new JScrollPane( panelResultados );
-    // scrollPane.setMaximumSize( new Dimension( 100, 100 ) );
     panelDerecho.add(panelResultados);
 
     panel.add(panelIzquierdo);

@@ -11,6 +11,9 @@ import repositorio.RepositorioRestaurante;
 
 /**
  * Clase principal del proyecto.
+ * 
+ * @author García Lemus, Rocío
+ * @author Juárez Juárez, María José
  */
 public class Main {
 
