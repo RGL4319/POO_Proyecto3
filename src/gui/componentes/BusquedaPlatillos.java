@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
+import gui.VentanaApp;
 import modelos.Platillo;
 import modelos.Restaurante;
 
@@ -110,7 +111,9 @@ public class BusquedaPlatillos extends JPanel {
       int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea finalizar la orden?", "Finalizar orden",
           JOptionPane.YES_NO_OPTION);
       if (respuesta == JOptionPane.YES_OPTION) {
-        guiOrden.finalizarOrden();
+        VentanaApp.tickets.add( guiOrden.finalizarOrden() );
+        System.out.println("Tickets: " + VentanaApp.tickets.toString());
+        guiOrden.configurarComboMesas();
       }
     });
 

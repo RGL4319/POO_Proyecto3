@@ -48,6 +48,7 @@ public abstract class Usuario implements Serializable {
         numVentas++;
         Ticket ticket = new Ticket( mesa, propina, esPagoConEfectivo );
         mesa.borrarOrden();
+        mesa.desocupar();
         return ticket;
     }    
 

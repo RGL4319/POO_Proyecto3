@@ -7,12 +7,14 @@ import java.util.Map;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 
 import gui.VentanaApp;
 import gui.vistas.Inicio;
@@ -20,6 +22,7 @@ import modelos.Mesa;
 import modelos.Orden;
 import modelos.Platillo;
 import modelos.Restaurante;
+import modelos.Ticket;
 import modelos.usuarios.Usuario;
 
 class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -238,13 +241,25 @@ public class OrdenMesa extends JPanel {
     mesa.getOrden().agregarPlatillo(platillo);
   }
 
-  public void finalizarOrden() {
+  public Ticket finalizarOrden() {
     // Se debe eliminar las filas de la tabla, cobrar generar ticket, y desocupar la mesa
     // tabla.removeRowSelectionInterval(0, tabla.getRowCount() - 1);
-    System.out.println("Finalizó la orden. Se debe de cobrar.");
+    ((DefaultTableModel)tabla.getModel()).setRowCount(0);
+    double propina;
+    try {
+      propina = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese la propina", "Propina", JOptionPane.QUESTION_MESSAGE));
+    }
+    catch(NumberFormatException e){
+      propina = 0;
+    }
+    return usuario.finalizarOrden(mesa, propina, JOptionPane.showConfirmDialog(null, "¿Pago en efectivo?", "Método de pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION );
   }
 
   public void setMesa(Mesa mesa) {
     this.mesa = mesa;
+  }
+
+  public void configurarComboMesas() {
+    inicio.configurarComboMesas();
   }
 }

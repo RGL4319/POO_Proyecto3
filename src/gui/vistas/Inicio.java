@@ -100,6 +100,7 @@ public class Inicio extends JPanel {
     if (comboMesa == null)
       comboMesa = new JComboBox<>();
 
+    comboMesa.removeAllItems();
 
     comboMesa.setEnabled(false);
     for (Mesa mesa : restaurante.getMesas()) {

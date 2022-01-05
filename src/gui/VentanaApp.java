@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
@@ -17,9 +19,12 @@ import gui.vistas.Inicio;
 import gui.vistas.Login;
 import gui.vistas.Logout;
 import modelos.Restaurante;
+import modelos.Ticket;
 import modelos.usuarios.Usuario;
 
 public class VentanaApp extends JFrame {
+
+  public static List<Ticket> tickets = new LinkedList<>();
 
   private JTabbedPane panel;
   private JLabel nombreUsuario;
