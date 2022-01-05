@@ -75,10 +75,15 @@ public class Inicio extends JPanel {
       configurarComboMesas();
     });
 
-    configurarComboMesas();
-
-    ordenMesa = new OrdenMesa(restaurante, usuario, (Mesa)comboMesa.getSelectedItem(), this);
+    
+    ordenMesa = new OrdenMesa(restaurante, usuario, null, this);
     busquedaPlatillos = new BusquedaPlatillos(restaurante, ordenMesa);
+    configurarComboMesas();
+    if (comboMesa.getItemCount() == 0) {
+      // TODO: Manejo de ComboBox Vacío
+    } else {
+      comboMesa.setSelectedIndex(0);
+    }
 
     filtroMesas.add(comboMesa);
     filtroMesas.add(checkFiltroOcupadas);
@@ -96,13 +101,25 @@ public class Inicio extends JPanel {
   public void configurarComboMesas() {
     boolean ocupadas = checkFiltroOcupadas.isSelected();
     boolean desocupadas = checkFiltroDesocupadas.isSelected();
-
-    if (comboMesa == null)
+    int anterior = -1;
+    if (comboMesa == null) {
       comboMesa = new JComboBox<>();
-
-    comboMesa.removeAllItems();
+      comboMesa.addActionListener(e -> {
+        if (comboMesa.isEnabled()) {
+          System.out.println(e.getSource());
+          System.out.println(((Mesa)comboMesa.getSelectedItem())  + " :D");
+          ordenMesa.setMesa((Mesa)comboMesa.getSelectedItem());
+          ordenMesa.crearTabla();
+        }
+      });
+    }
+    else {
+      anterior = comboMesa.getSelectedIndex();
+    }
 
     comboMesa.setEnabled(false);
+    comboMesa.removeAllItems();
+
 
     int numOcupadas, numDesocupadas;
     numOcupadas = numDesocupadas = 0;
@@ -119,24 +136,24 @@ public class Inicio extends JPanel {
       else
         numDesocupadas++;
     }
+    if ( anterior != -1 ) {
+      comboMesa.setSelectedIndex(anterior);
+    }
 
     checkFiltroOcupadas.setText( String.format("Ocupadas (%d)", numOcupadas) );
     checkFiltroDesocupadas.setText( String.format("Desocupadas (%d)", numDesocupadas) );
 
-    if (comboMesa.getItemCount() == 0) {
-      // TODO: Manejo de ComboBox Vacío
-    } else {
-      //comboMesa.setSelectedIndex(0);
-    }
+    
 
     comboMesa.setEnabled(true);
 
-    comboMesa.addItemListener(e -> {
-      if (e.getStateChange() == ItemEvent.SELECTED) {
-        System.out.println(((Mesa)e.getItem()).toString()  + " :D");
-        ordenMesa.setMesa((Mesa)e.getItem());
-        ordenMesa.crearTabla();
-      }
-    });
+    
+    // comboMesa.addItemListener(e -> {
+    //   if (e.getStateChange() == ItemEvent.SELECTED) {
+    //     System.out.println(((Mesa)e.getItem()).toString()  + " :D");
+    //     ordenMesa.setMesa((Mesa)e.getItem());
+    //     ordenMesa.crearTabla();
+    //   }
+    // });
   }
 }
