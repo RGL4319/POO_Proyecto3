@@ -18,6 +18,7 @@ public class Main {
 
     /**
      * Método principal el cual será el punto de entrada al proyecto.
+     * 
      * @param args Parámetros de la línea de comando.
      */
     public static void main(String[] args) {
@@ -33,12 +34,13 @@ public class Main {
         ejecutarAplicacion(restaurante);
     }
 
-    public static void ejecutarAplicacion( Restaurante restaurante ){
+    public static void ejecutarAplicacion(Restaurante restaurante) {
         SwingUtilities.invokeLater(() -> {
             VentanaApp app = VentanaApp.crearInstancia(restaurante);
             app.setVisible(true);
             app.pack();
-            app.crearSesion(new Administrador( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
+            app.crearSesion(new Administrador("Gamaliel Ríos", LocalDate.parse("2001-11-24"), 'M', "55-1111-3300",
+                    "GamaRL", "123"));
         });
     }
 }

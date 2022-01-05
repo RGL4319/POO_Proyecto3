@@ -82,8 +82,8 @@ public class BusquedaPlatillos extends JPanel {
       busquedaPlatillos.addItem(p);
     }
 
-    busquedaPlatillos.setEditable(true);
-    busquedaPlatillos.setSelectedItem(null);
+    //busquedaPlatillos.setEditable(true);
+    //busquedaPlatillos.setSelectedItem(null);
 
     JButton btnAgregar = new JButton("Agregar");
     JButton btnFinalizarOrden = new JButton("Finalizar orden");
@@ -113,7 +113,7 @@ public class BusquedaPlatillos extends JPanel {
       if (respuesta == JOptionPane.YES_OPTION) {
         VentanaApp.tickets.add( guiOrden.finalizarOrden() );
         System.out.println("Tickets: " + VentanaApp.tickets.toString());
-        guiOrden.configurarComboMesas();
+        guiOrden.configurarComboMesas(false);
       }
     });
 

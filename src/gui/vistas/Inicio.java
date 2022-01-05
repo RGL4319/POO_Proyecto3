@@ -1,7 +1,5 @@
 package gui.vistas;
 
-import java.awt.event.ItemEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
@@ -57,6 +55,10 @@ public class Inicio extends JPanel {
     this.restaurante = restaurante;
     this.usuario = usuario;
 
+    crearComponentes();
+  }
+
+  public void crearComponentes() {
     setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
     Box filtroMesas = Box.createHorizontalBox();
@@ -67,18 +69,17 @@ public class Inicio extends JPanel {
     checkFiltroDesocupadas.addActionListener(e -> {
       if (!checkFiltroDesocupadas.isSelected() && !checkFiltroOcupadas.isSelected())
         checkFiltroDesocupadas.setSelected(true);
-      configurarComboMesas();
+      configurarComboMesas(false);
     });
     checkFiltroOcupadas.addActionListener(e -> {
       if (!checkFiltroDesocupadas.isSelected() && !checkFiltroOcupadas.isSelected())
         checkFiltroOcupadas.setSelected(true);
-      configurarComboMesas();
+      configurarComboMesas(false);
     });
 
-    
     ordenMesa = new OrdenMesa(restaurante, usuario, null, this);
     busquedaPlatillos = new BusquedaPlatillos(restaurante, ordenMesa);
-    configurarComboMesas();
+    configurarComboMesas(false);
     if (comboMesa.getItemCount() == 0) {
       // TODO: Manejo de ComboBox Vacío
     } else {
@@ -89,7 +90,6 @@ public class Inicio extends JPanel {
     filtroMesas.add(checkFiltroOcupadas);
     filtroMesas.add(checkFiltroDesocupadas);
 
-
     add(filtroMesas);
     add(busquedaPlatillos);
     add(ordenMesa);
@@ -98,28 +98,25 @@ public class Inicio extends JPanel {
   /**
    * Configura las opciones de la selección de mesas
    */
-  public void configurarComboMesas() {
+  public void configurarComboMesas(boolean mantenerSeleccion) {
     boolean ocupadas = checkFiltroOcupadas.isSelected();
     boolean desocupadas = checkFiltroDesocupadas.isSelected();
-    int anterior = -1;
+    Mesa anterior = null;
+
     if (comboMesa == null) {
       comboMesa = new JComboBox<>();
       comboMesa.addActionListener(e -> {
         if (comboMesa.isEnabled()) {
-          System.out.println(e.getSource());
-          System.out.println(((Mesa)comboMesa.getSelectedItem())  + " :D");
-          ordenMesa.setMesa((Mesa)comboMesa.getSelectedItem());
+          ordenMesa.setMesa((Mesa) comboMesa.getSelectedItem());
           ordenMesa.crearTabla();
         }
       });
-    }
-    else {
-      anterior = comboMesa.getSelectedIndex();
+    } else {
+      anterior = (Mesa) comboMesa.getSelectedItem();
     }
 
     comboMesa.setEnabled(false);
     comboMesa.removeAllItems();
-
 
     int numOcupadas, numDesocupadas;
     numOcupadas = numDesocupadas = 0;
@@ -127,33 +124,28 @@ public class Inicio extends JPanel {
     for (Mesa mesa : restaurante.getMesas()) {
       if (mesa.estaOcupada() && mesa.getOrden().getServidor().equals(usuario) && ocupadas) {
         comboMesa.addItem(mesa);
-      }
-      else if (!mesa.estaOcupada() && desocupadas) {
+      } else if (!mesa.estaOcupada() && desocupadas) {
         comboMesa.addItem(mesa);
       }
-      if ( mesa.estaOcupada() )
+
+      if (mesa.estaOcupada())
         numOcupadas++;
       else
         numDesocupadas++;
     }
-    if ( anterior != -1 ) {
-      comboMesa.setSelectedIndex(anterior);
-    }
 
-    checkFiltroOcupadas.setText( String.format("Ocupadas (%d)", numOcupadas) );
-    checkFiltroDesocupadas.setText( String.format("Desocupadas (%d)", numDesocupadas) );
+    comboMesa.addItem(anterior);
 
-    
+
+    checkFiltroOcupadas.setText(String.format("Ocupadas (%d)", numOcupadas));
+    checkFiltroDesocupadas.setText(String.format("Desocupadas (%d)", numDesocupadas));
 
     comboMesa.setEnabled(true);
 
-    
-    // comboMesa.addItemListener(e -> {
-    //   if (e.getStateChange() == ItemEvent.SELECTED) {
-    //     System.out.println(((Mesa)e.getItem()).toString()  + " :D");
-    //     ordenMesa.setMesa((Mesa)e.getItem());
-    //     ordenMesa.crearTabla();
-    //   }
-    // });
+    if (mantenerSeleccion) {
+      comboMesa.setSelectedItem(anterior);
+    } else {
+      comboMesa.setSelectedIndex(0);
+    }
   }
 }

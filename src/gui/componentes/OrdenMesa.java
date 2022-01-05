@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 
 import gui.VentanaApp;
 import gui.vistas.Inicio;
@@ -56,7 +55,6 @@ class ButtonEditor extends DefaultCellEditor {
     btn.setOpaque(true);
     
     btn.addActionListener(e -> {
-      System.out.println("Eliminar");
       fireEditingStopped();
     });
   }
@@ -172,8 +170,6 @@ public class OrdenMesa extends JPanel {
         return;
       }
 
-      
-
       for (Platillo p : mesa.getOrden().getPlatillos().keySet()) {
 
         if (p.getNombre().equals(nombre)) {
@@ -228,7 +224,7 @@ public class OrdenMesa extends JPanel {
 
       int index = restaurante.getMesas().indexOf(mesa);
       restaurante.getMesas().get(index).ocupar();
-      inicio.configurarComboMesas();
+      inicio.configurarComboMesas(true);
     }
 
     if (mesa.getOrden().getPlatillos().containsKey(platillo))
@@ -259,7 +255,7 @@ public class OrdenMesa extends JPanel {
     this.mesa = mesa;
   }
 
-  public void configurarComboMesas() {
-    inicio.configurarComboMesas();
+  public void configurarComboMesas(boolean conservarAnterior) {
+    inicio.configurarComboMesas(conservarAnterior);
   }
 }
