@@ -1,6 +1,5 @@
+import java.io.File;
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -9,6 +8,7 @@ import configuraciones.ManejadorUsuarios;
 import gui.VentanaApp;
 import modelos.Restaurante;
 import modelos.usuarios.Administrador;
+import repositorio.Repositorio;
 import repositorio.RepositorioRestaurante;
 
 /**
@@ -21,16 +21,19 @@ public class Main {
      * @param args Parámetros de la línea de comando.
      */
     public static void main(String[] args) {
-        ManejadorUsuarios.reescribirArchivo();
+        if (!new File(Repositorio.getRuta()).exists()) {
+            new File(Repositorio.getRuta()).mkdir();
 
-        ManejadorRestaurante.reescribirArchivo();
+            ManejadorUsuarios.reescribirArchivo();
+            ManejadorRestaurante.reescribirArchivo();
+        }
 
         var restaurante = RepositorioRestaurante.getRestaurante();
 
-        lanzarLogin(restaurante);
+        ejecutarAplicacion(restaurante);
     }
 
-    public static void lanzarLogin( Restaurante restaurante ){
+    public static void ejecutarAplicacion( Restaurante restaurante ){
         SwingUtilities.invokeLater(() -> {
             VentanaApp app = VentanaApp.crearInstancia(restaurante);
             app.setVisible(true);

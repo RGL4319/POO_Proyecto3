@@ -20,6 +20,9 @@ public class ManejadorUsuarios {
      */
     public static void reescribirArchivo () {
 
+        if (new File(Repositorio.getRuta()).exists())
+            new File(Repositorio.getRuta()).mkdir();
+
         List<Usuario> usuarios = new LinkedList<>();
 
         usuarios.add( new Mesero( "Alfonso Perez", LocalDate.parse("2001-12-25"), 'H', "55-3444-3121", "Alfonso33", "Hola1" ) );
