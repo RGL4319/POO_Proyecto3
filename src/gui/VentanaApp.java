@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -168,6 +169,7 @@ public class VentanaApp extends JFrame {
     panel.add("Inicio", new Inicio(restaurante, usuario));
     if (usuario.esAdmin()) {
       JPanel panelUsuarios = new JPanel();
+      ImageIcon adminIcon = new ImageIcon(new ImageIcon("imagenes/adminIcon.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
 
       buscador = new AdministracionUsuarios(restaurante, usuario);
       formulario = new FormularioMesero(restaurante);
@@ -177,7 +179,7 @@ public class VentanaApp extends JFrame {
 
       formulario.setVisible(false);
 
-      panel.add("Usuarios", panelUsuarios);
+      panel.addTab("Usuarios", adminIcon, panelUsuarios);
 
       //TODO: Eliminar desde aquí
       JPanel panelVentas = new JPanel();
@@ -201,7 +203,7 @@ public class VentanaApp extends JFrame {
       panelVentas.add(contenedorGrafica);
       //TODO: Eliminar hasta acá
 
-      panel.add("Ventas", panelVentas);
+      panel.addTab("Ventas", adminIcon, panelVentas);
     }
 
     panel.add("Logout", new Logout());
