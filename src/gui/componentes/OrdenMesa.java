@@ -152,10 +152,24 @@ public class OrdenMesa extends JPanel {
 
     tabla.getModel().addTableModelListener(e -> {
 
-      if (e.getColumn() != 2)
+      if (e.getColumn() != 2 && e.getColumn() != tabla.getColumnCount() - 1 )
         return;
 
       String nombre = (String) tabla.getValueAt(e.getFirstRow(), 0);
+
+      if ( e.getColumn() == tabla.getColumnCount() - 1 ) {
+        for (Platillo p : mesa.getOrden().getPlatillos().keySet()) {
+
+          if (p.getNombre().equals(nombre)) {
+            ((DefaultTableModel)tabla.getModel()).removeRow(e.getFirstRow());
+            mesa.getOrden().eliminarPlatillo(p);
+            break;
+          }
+        }
+        return;
+      }
+
+      
 
       for (Platillo p : mesa.getOrden().getPlatillos().keySet()) {
 

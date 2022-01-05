@@ -79,4 +79,14 @@ public class Orden implements Serializable {
     public UUID getId() {
       return id;
     }
+
+    /**
+     * Método que elimina un platillo de la orden
+     * @param platillo
+     */
+    public void eliminarPlatillo ( Platillo platillo ) {
+        if ( platillo == null )
+            return;
+        platillos.remove( platillo );
+    }
 }
