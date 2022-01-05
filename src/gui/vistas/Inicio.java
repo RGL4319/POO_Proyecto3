@@ -119,7 +119,7 @@ public class Inicio extends JPanel {
   public void configurarComboMesas(boolean mantenerSeleccion) {
     boolean ocupadas = checkFiltroOcupadas.isSelected();
     boolean desocupadas = checkFiltroDesocupadas.isSelected();
-    Mesa anterior = null;
+    int anterior = -1;
 
     if (comboMesa == null) {
       comboMesa = new JComboBox<>();
@@ -130,7 +130,7 @@ public class Inicio extends JPanel {
         }
       });
     } else if (mantenerSeleccion) {
-      anterior = (Mesa) comboMesa.getSelectedItem();
+      anterior = comboMesa.getSelectedIndex();
     }
 
     comboMesa.setEnabled(false);
@@ -158,8 +158,7 @@ public class Inicio extends JPanel {
     comboMesa.setEnabled(true);
 
     if (mantenerSeleccion) {
-      comboMesa.addItem(anterior);
-      comboMesa.setSelectedItem(anterior);
+      comboMesa.setSelectedIndex(anterior);
     } else {
       try {
         comboMesa.setSelectedIndex(0);
