@@ -103,12 +103,25 @@ public class Inicio extends JPanel {
     comboMesa.removeAllItems();
 
     comboMesa.setEnabled(false);
+
+    int numOcupadas, numDesocupadas;
+    numOcupadas = numDesocupadas = 0;
+
     for (Mesa mesa : restaurante.getMesas()) {
-      if (mesa.estaOcupada() && mesa.getOrden().getServidor().equals(usuario) && ocupadas)
+      if (mesa.estaOcupada() && mesa.getOrden().getServidor().equals(usuario) && ocupadas) {
         comboMesa.addItem(mesa);
-      else if (!mesa.estaOcupada() && desocupadas)
+      }
+      else if (!mesa.estaOcupada() && desocupadas) {
         comboMesa.addItem(mesa);
+      }
+      if ( mesa.estaOcupada() )
+        numOcupadas++;
+      else
+        numDesocupadas++;
     }
+
+    checkFiltroOcupadas.setText( String.format("Ocupadas (%d)", numOcupadas) );
+    checkFiltroDesocupadas.setText( String.format("Desocupadas (%d)", numDesocupadas) );
 
     if (comboMesa.getItemCount() == 0) {
       // TODO: Manejo de ComboBox Vacío
