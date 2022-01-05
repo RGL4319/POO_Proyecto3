@@ -23,6 +23,7 @@ import modelos.Platillo;
 import modelos.Restaurante;
 import modelos.Ticket;
 import modelos.usuarios.Usuario;
+import repositorio.RepositorioRestaurante;
 
 class ButtonRenderer extends JButton implements TableCellRenderer {
 
@@ -138,7 +139,9 @@ public class OrdenMesa extends JPanel {
 
       @Override
       public boolean isCellEditable(int row, int column) {
-        return column == 2 || column == 4;
+        if ( !usuario.getId().equals(mesa.getOrden().getServidor().getId()) )
+          return false;
+        return column == 2 || column == 4  ;
       }
     };
 
@@ -187,11 +190,13 @@ public class OrdenMesa extends JPanel {
             }
 
             mesa.getOrden().setNumDePlatillo(p, num);
+            RepositorioRestaurante.guardar( restaurante );
 
             tabla.setValueAt(num * p.getPrecio(), e.getFirstRow(), 3);
           }
         }
       }
+
     });
 
     if (mesa != null && mesa.getOrden() != null) {
@@ -257,5 +262,9 @@ public class OrdenMesa extends JPanel {
 
   public void configurarComboMesas(boolean conservarAnterior) {
     inicio.configurarComboMesas(conservarAnterior);
+  }
+
+  public Orden getOrden() {
+    return mesa.getOrden();
   }
 }

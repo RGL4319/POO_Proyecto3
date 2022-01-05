@@ -37,8 +37,6 @@ import modelos.usuarios.Usuario;
  */
 public class VentanaApp extends JFrame {
 
-  public static List<Ticket> tickets = new LinkedList<>();
-
   /**
    * Componente que se encarga de mostrar/ocultar las ventanas en la intefaz
    * gráfica
