@@ -23,7 +23,7 @@ public class Logout extends JPanel {
     contenedor.add(new JLabel("¿Seguro que quieres cerrar sesión?"));
 
     JPanel panelOpciones = new JPanel();
-    panelOpciones.setLayout(new FlowLayout());
+    panelOpciones.setLayout(new FlowLayout(FlowLayout.CENTER));
 
     JButton btnSi = new JButton("Sí");
     JButton btnNo = new JButton("No");
@@ -44,6 +44,7 @@ public class Logout extends JPanel {
     panelOpciones.add(btnSi);
     panelOpciones.add(btnNo);
 
+    contenedor.add(Box.createVerticalStrut(30));
     contenedor.add(panelOpciones);
 
     add(contenedor);

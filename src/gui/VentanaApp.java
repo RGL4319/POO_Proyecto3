@@ -44,7 +44,7 @@ public class VentanaApp extends JFrame {
   public static VentanaApp crearInstancia(Restaurante restaurante) {
     if (instancia == null)
       instancia = new VentanaApp(restaurante);
-    
+
     return instancia;
   }
 
@@ -75,7 +75,7 @@ public class VentanaApp extends JFrame {
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
-    ImageIcon icon = new ImageIcon("imagenes/quesadilla.png");  
+    ImageIcon icon = new ImageIcon("imagenes/quesadilla.png");
     setIconImage(icon.getImage());
     setTitle(restaurante.getNombre() + " - Iniciar sesión");
 
@@ -97,11 +97,11 @@ public class VentanaApp extends JFrame {
     this.usuario = usuario;
 
     nombreUsuario.setText(this.usuario.getNombre());
-    nombreUsuario.setForeground(new Color(0,250,30));
+    nombreUsuario.setForeground(new Color(9, 150, 47));
 
     panel.removeAll();
     panel.add("Inicio", new Inicio(restaurante, usuario));
-    if ( usuario.esAdmin() ) {
+    if (usuario.esAdmin()) {
       JPanel panelUsuarios = new JPanel();
 
       buscador = new AdministracionUsuarios(restaurante, usuario);
@@ -112,7 +112,7 @@ public class VentanaApp extends JFrame {
 
       formulario.setVisible(false);
 
-      panel.add( "Usuarios",  panelUsuarios);
+      panel.add("Usuarios", panelUsuarios);
     }
 
     panel.add("Logout", new Logout());
@@ -127,9 +127,9 @@ public class VentanaApp extends JFrame {
   }
 
   public void toggleVistasUsuarios() {
-      formulario.setVisible(!formulario.isVisible());
-      buscador.setVisible(!buscador.isVisible());
-      // pack();
+    formulario.setVisible(!formulario.isVisible());
+    buscador.setVisible(!buscador.isVisible());
+    // pack();
   }
 
   public FormularioMesero getFormulario() {
