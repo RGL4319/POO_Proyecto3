@@ -178,7 +178,6 @@ public class VentanaApp extends JFrame {
 
       formulario.setVisible(false);
 
-      panel.add("Usuarios", panelUsuarios);
 
       //TODO: Eliminar desde aquí
       JPanel panelVentas = new JPanel();
@@ -202,7 +201,10 @@ public class VentanaApp extends JFrame {
       panelVentas.add(contenedorGrafica);
       //TODO: Eliminar hasta acá
 
+      panel.add("Usuarios", panelUsuarios);
       panel.add("Ventas", panelVentas);
+      panel.setBackgroundAt( 1, new Color( 222, 67, 67 ) );
+      panel.setBackgroundAt( 2, new Color( 222, 67, 67 ) );
     }
     
 
