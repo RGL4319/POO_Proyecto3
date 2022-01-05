@@ -32,13 +32,16 @@ public class Main {
 
         ejecutarAplicacion(restaurante);
     }
-
+/**
+ * Método que manda a llamar a la ejecución de la Aplicación creada para simular un restaurante 
+ * @param restaurante   la abstracción del restaurante creado 
+ */
     public static void ejecutarAplicacion( Restaurante restaurante ){
         SwingUtilities.invokeLater(() -> {
             VentanaApp app = VentanaApp.crearInstancia(restaurante);
             app.setVisible(true);
             app.pack();
-            app.crearSesion(new Administrador( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
+            //app.crearSesion(new Administrador( "Gamaliel Ríos",  LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
         });
     }
 }
