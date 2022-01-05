@@ -17,6 +17,7 @@ import javax.swing.JTabbedPane;
 
 import gui.componentes.Grafica;
 import gui.vistas.AdministracionUsuarios;
+import gui.vistas.Estadisticas;
 import gui.vistas.FormularioMesero;
 import gui.vistas.Inicio;
 import gui.vistas.Login;
@@ -203,7 +204,9 @@ public class VentanaApp extends JFrame {
 
       panel.add("Ventas", panelVentas);
     }
+    
 
+    panel.add("Estadísticas", new Estadisticas(restaurante));
     panel.add("Logout", new Logout());
 
     setSize(600, 400);
