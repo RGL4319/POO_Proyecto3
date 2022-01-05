@@ -22,6 +22,11 @@ public class Inicio extends JPanel {
   private Restaurante restaurante;
 
   /**
+   * 
+   */
+  private OrdenMesa ordenMesa;
+
+  /**
    * El selector de mesas
    */
   private JComboBox<Mesa> comboMesa;
@@ -72,16 +77,8 @@ public class Inicio extends JPanel {
 
     configurarComboMesas();
 
-    OrdenMesa ordenMesa = new OrdenMesa(restaurante, usuario, (Mesa)comboMesa.getSelectedItem(), this);
+    ordenMesa = new OrdenMesa(restaurante, usuario, (Mesa)comboMesa.getSelectedItem(), this);
     busquedaPlatillos = new BusquedaPlatillos(restaurante, ordenMesa);
-
-    comboMesa.addItemListener(e -> {
-      if (e.getStateChange() == ItemEvent.SELECTED) {
-        System.out.println(((Mesa)e.getItem()).toString()  + " :D");
-        ordenMesa.setMesa((Mesa)e.getItem());
-        ordenMesa.crearTabla();
-      }
-    });
 
     filtroMesas.add(comboMesa);
     filtroMesas.add(checkFiltroOcupadas);
@@ -103,8 +100,8 @@ public class Inicio extends JPanel {
     if (comboMesa == null)
       comboMesa = new JComboBox<>();
 
-    comboMesa.removeAllItems();
 
+    comboMesa.setEnabled(false);
     for (Mesa mesa : restaurante.getMesas()) {
       if (mesa.estaOcupada() && mesa.getOrden().getServidor().equals(usuario) && ocupadas)
         comboMesa.addItem(mesa);
@@ -117,5 +114,15 @@ public class Inicio extends JPanel {
     } else {
       //comboMesa.setSelectedIndex(0);
     }
+
+    comboMesa.setEnabled(true);
+
+    comboMesa.addItemListener(e -> {
+      if (e.getStateChange() == ItemEvent.SELECTED) {
+        System.out.println(((Mesa)e.getItem()).toString()  + " :D");
+        ordenMesa.setMesa((Mesa)e.getItem());
+        ordenMesa.crearTabla();
+      }
+    });
   }
 }

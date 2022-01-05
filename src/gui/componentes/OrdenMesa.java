@@ -3,6 +3,7 @@ package gui.componentes;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.Map;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import gui.VentanaApp;
 import gui.vistas.Inicio;
 import modelos.Mesa;
 import modelos.Orden;
@@ -179,6 +181,16 @@ public class OrdenMesa extends JPanel {
       }
     });
 
+    if (mesa != null && mesa.getOrden() != null) {
+
+      Map<Platillo, Integer> platillos = mesa.getOrden().getPlatillos();
+      for (Platillo platillo : platillos.keySet()) {
+        Object[] data = { platillo.getNombre(), platillo.getPrecio(), platillos.get(platillo), platillo.getPrecio() * platillos.get(platillo), "Eliminar" };
+
+        modelo.addRow(data);
+      }
+    }
+
     JScrollPane panel = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
         JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -187,6 +199,7 @@ public class OrdenMesa extends JPanel {
     add(panel);
     
     panel.setPreferredSize(new Dimension(500, 200));
+    VentanaApp.getInstancia().repaint();
   }
 
   public void agregarPlatillo(Platillo platillo) {
