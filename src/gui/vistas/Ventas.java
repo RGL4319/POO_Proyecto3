@@ -17,11 +17,17 @@ import modelos.Restaurante;
 import modelos.Ticket;
 import modelos.usuarios.Usuario;
 import repositorio.RepositorioUsuarios;
-
+/**
+ * Clase que tiene los métodos correspondientes para mostrar las ventas realizadas en el restaurante 
+ * Hereda de JPanel para uitlizar los métodos/funcionalidades de una vista gráfica
+ */
 public class Ventas extends JPanel {
-
+//Atributo de tipo restaurante 
   private Restaurante restaurante;
-
+/**
+ * Método constructor 
+ * @param restaurante para obtener sus características 
+ */
   public Ventas(Restaurante restaurante) {
     super();
 
@@ -29,7 +35,10 @@ public class Ventas extends JPanel {
 
     crearComponentes();
   }
-  
+  /**
+   * Método que realiza la creación de los componentes y características que tiene la vista gráfica
+   * 
+   */
   private void crearComponentes() {
     Box contenedorGrafica = Box.createHorizontalBox();
 

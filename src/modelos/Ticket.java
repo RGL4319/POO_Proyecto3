@@ -61,15 +61,16 @@ public class Ticket implements Serializable {
 
     private void generarTicket () {
         try {
+           // private static final String ruta1 = new File("archivos/").getAbsolutePath();
           //TODO: Incluir fecha y hora en el nombre del archivo
           BufferedWriter escritor = new BufferedWriter( new FileWriter( new File("tickets/" /*+ fechaHora.toString()*/ + "(" + orden.getId() + ").txt" ) ) );
           escritor.append(String.valueOf(fechaHora.toString() + "\n"));
-          escritor.append(String.valueOf(orden.getId()) + "\n");
-          escritor.append(String.valueOf(orden.getServidor().getNombre()) + "\n");
-          escritor.append(String.valueOf("Mesa " + mesa) + "\n");
-          escritor.append(String.valueOf(orden.getPlatillos()) + "\n");
-          escritor.append(String.valueOf(subtotal) + "\n");
-          escritor.append(String.valueOf(total) + "\n");
+          escritor.append(String.valueOf("Orden: "+ orden.getId()) + "\n");
+          escritor.append(String.valueOf("Servidor: "+ orden.getServidor().getNombre()) + "\n");
+          escritor.append(String.valueOf("Mesa: " + mesa) + "\n");
+          escritor.append(String.valueOf("Platillo: "+ orden.getPlatillos()) + "\n");
+          escritor.append(String.valueOf("Subtotal: "+ subtotal) + "\n");
+          escritor.append(String.valueOf("Total:" +total) + "\n");
           escritor.append(String.valueOf("Pago " + (esPagoConEfectivo ? "en efectivo" : "con tarjeta") + "." ) + "\n");
           escritor.close();
         } catch (IOException e) {
