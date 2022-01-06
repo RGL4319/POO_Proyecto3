@@ -130,4 +130,18 @@ public abstract class Usuario implements Serializable {
     public boolean esAdmin() {
         return (this instanceof Administrador);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+       if (obj instanceof Usuario) {
+           Usuario usuario = (Usuario) obj;
+           return usuario.getId().equals(getId());
+       }
+       return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

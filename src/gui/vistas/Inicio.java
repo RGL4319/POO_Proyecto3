@@ -150,8 +150,6 @@ public class Inicio extends JPanel {
         numOcupadas++;
       else
         numDesocupadas++;
-
-      System.out.println(mesa);
     }
 
     checkFiltroOcupadas.setText(String.format("Ocupadas (%d)", numOcupadas));

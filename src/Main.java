@@ -1,4 +1,5 @@
 import java.io.File;
+import java.time.LocalDate;
 
 import javax.swing.SwingUtilities;
 
@@ -6,6 +7,7 @@ import configuraciones.ManejadorRestaurante;
 import configuraciones.ManejadorUsuarios;
 import gui.VentanaApp;
 import modelos.Restaurante;
+import modelos.usuarios.Administrador;
 import repositorio.Repositorio;
 import repositorio.RepositorioRestaurante;
 
@@ -32,8 +34,6 @@ public class Main {
 
         var restaurante = RepositorioRestaurante.getRestaurante();
 
-        System.out.println(restaurante.getTickets());
-
         ejecutarAplicacion(restaurante);
     }
 
@@ -48,8 +48,7 @@ public class Main {
             VentanaApp app = VentanaApp.crearInstancia(restaurante);
             app.setVisible(true);
             app.pack();
-            // app.crearSesion(new Administrador( "Gamaliel Ríos",
-            // LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
+            // app.crearSesion(new Administrador( "Gamaliel Ríos", LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "GamaRL", "123" ));
         });
     }
 }

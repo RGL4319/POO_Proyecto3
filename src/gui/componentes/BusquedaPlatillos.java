@@ -16,6 +16,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import modelos.Platillo;
 import modelos.Restaurante;
+import modelos.Ticket;
 import modelos.usuarios.Usuario;
 
 class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
@@ -116,7 +117,9 @@ public class BusquedaPlatillos extends JPanel {
       int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea finalizar la orden?", "Finalizar orden",
           JOptionPane.YES_NO_OPTION);
       if (respuesta == JOptionPane.YES_OPTION) {
-        restaurante.agregarTicket( guiOrden.finalizarOrden() );
+        Ticket t = guiOrden.finalizarOrden();
+        restaurante.agregarTicket(t);
+        JOptionPane.showMessageDialog(null, "Total: $" + t.getTotal());
         guiOrden.configurarComboMesas(false);
       }
     });

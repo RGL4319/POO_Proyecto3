@@ -2,10 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
@@ -16,15 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import gui.componentes.Grafica;
 import gui.vistas.AdministracionUsuarios;
 import gui.vistas.Estadisticas;
 import gui.vistas.FormularioMesero;
 import gui.vistas.Inicio;
 import gui.vistas.Login;
 import gui.vistas.Logout;
+import gui.vistas.Ventas;
 import modelos.Restaurante;
-import modelos.Ticket;
 import modelos.usuarios.Usuario;
 
 /**
@@ -180,29 +175,7 @@ public class VentanaApp extends JFrame {
 
       panel.addTab("Usuarios", adminIcon, panelUsuarios);
 
-      //TODO: Eliminar desde aquí
-      JPanel panelVentas = new JPanel();
-      Box contenedorGrafica = Box.createHorizontalBox();
-
-      Map<String, Double> a = new LinkedHashMap<>();
-      Map<String, Double> b = new LinkedHashMap<>();
-      a.put("Hola", 0.5);
-      a.put("ADIOS", 12.0);
-      a.put("Hfsd", 23.32);
-      a.put("ewfdsa", 243.5);
-      b.put("gfdgju", 0.5);
-      b.put("mole", 12.0);
-      b.put("fsdg5435", 23.32);
-      b.put("ewfdsdfgdfgda", 243.5);
-
-      contenedorGrafica.add(new Grafica("Ventas totales por mesero", a));
-      contenedorGrafica.add(Box.createHorizontalStrut(30));
-      contenedorGrafica.add(new Grafica("Ventas totales por mesa", b));
-
-      panelVentas.add(contenedorGrafica);
-      //TODO: Eliminar hasta acá
-
-      panel.addTab("Ventas", adminIcon, panelVentas);
+      panel.addTab("Ventas", adminIcon, new Ventas(restaurante));
     }
     
 

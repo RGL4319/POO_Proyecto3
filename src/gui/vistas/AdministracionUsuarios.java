@@ -1,7 +1,6 @@
 package gui.vistas;
 
 import java.awt.Color;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -21,10 +20,9 @@ import repositorio.RepositorioUsuarios;
 public class AdministracionUsuarios extends JPanel {
 
   private Restaurante restaurante;
-  private Usuario usuario;
-  private List<Usuario> usuarios;
+  /*private Usuario usuario;
   private boolean editar;
-  private String busqueda;
+  private String busqueda;*/
   private AdministracionUsuarios me;
 
   private JTextField campoBusqueda;
@@ -37,8 +35,8 @@ public class AdministracionUsuarios extends JPanel {
     super();
 
     this.restaurante = restaurante;
-    this.usuario = usuario;
-    this.editar = usuario != null;
+    // this.usuario = usuario;
+    // this.editar = usuario != null;
     me = this;
 
     crearComponentes();

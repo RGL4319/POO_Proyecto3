@@ -6,13 +6,15 @@ import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import modelos.usuarios.Usuario;
+
 public class Grafica extends JPanel {
     
     private String nombre;
 
-    private Map<String, Double> datos;
+    private Map<Usuario, Double> datos;
 
-    public Grafica( String nombre, Map<String, Double> datos ) {
+    public Grafica( String nombre, Map<Usuario, Double> datos ) {
         super();
         this.nombre = nombre;
         this.datos = datos;
@@ -26,14 +28,14 @@ public class Grafica extends JPanel {
         texto = new JLabel( nombre );
         contenedor.add( texto );
         contenedor.add( Box.createVerticalStrut(20) );
-        for (String key : datos.keySet()) {
-            texto = new JLabel( key + "         " + String.valueOf(datos.get(key)) );
+        for (Usuario key : datos.keySet()) {
+            texto = new JLabel( key.getNombre() + "         " + String.valueOf(datos.get(key)) );
             contenedor.add( texto );
         }
         add(contenedor);
     }
 
-    public void setDatos(Map<String, Double> datos) {
+    public void setDatos(Map<Usuario, Double> datos) {
         this.datos = datos;
         crearComponentes();
     }

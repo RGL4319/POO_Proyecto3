@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import modelos.usuarios.Usuario;
+import javax.swing.JOptionPane;
 
 public class Ticket implements Serializable {
 
@@ -53,7 +53,7 @@ public class Ticket implements Serializable {
         this.mesa = mesa.getNumeroMesa();
         this.orden = mesa.getOrden();
         this.subtotal = orden.calcularSubtotal();
-        this.total = subtotal * iva + propina;
+        this.total = Math.ceil(subtotal * iva + propina);
         this.esPagoConEfectivo = esPagoConEfectivo;
         fechaHora = LocalDateTime.now();
         generarTicket();
@@ -73,7 +73,7 @@ public class Ticket implements Serializable {
           escritor.append(String.valueOf("Pago " + (esPagoConEfectivo ? "en efectivo" : "con tarjeta") + "." ) + "\n");
           escritor.close();
         } catch (IOException e) {
-            System.out.println("Algo salió mal con la generación del ticket.");
+            JOptionPane.showMessageDialog(null, "Algo salió mal con la generación del ticket.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
