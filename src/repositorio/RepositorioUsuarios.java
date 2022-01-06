@@ -47,7 +47,7 @@ public class RepositorioUsuarios {
     public static void udpateUsuario( List<Usuario> usuarios, Usuario usuario, boolean nuevo) {
         try {
             /**
-             * Manejo de excepciones para el uso de archivos de 
+             * Manejo de excepciones para el uso de archivos de los usuarios creados 
              */
             File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
             ObjectOutputStream s = new ObjectOutputStream( new FileOutputStream(ruta) );
