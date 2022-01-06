@@ -1,11 +1,15 @@
 package gui.vistas;
 
+import java.awt.Dimension;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import gui.componentes.Grafica;
 import modelos.Mesa;
@@ -45,12 +49,24 @@ public class Ventas extends JPanel {
       ventasMesero.put(u, avg);
     }
 
+    JTable tablaMeseros = new JTable();
+    DefaultTableModel modeloMeseros = new DefaultTableModel() {
+      @Override
+      public boolean isCellEditable(int row, int column) {
+        return false;
+      }
+    };
 
+    tablaMeseros.setModel(modeloMeseros);
+    modeloMeseros.setColumnIdentifiers(new String[]{"Mesero", "Ventas"});
 
-    contenedorGrafica.add(new Grafica("Ventas totales por mesero", ventasMesero));
-    contenedorGrafica.add(Box.createHorizontalStrut(30));
-    //contenedorGrafica.add(new Grafica("Ventas totales por mesa", ventasMesa));
+    for (Usuario u : usuarios) {
+      Object[] data = { u.getNombre(), ventasMesero.get(u)};
+      modeloMeseros.addRow(data);
+    }
+    JScrollPane panelMeseros = new JScrollPane(tablaMeseros);
+    panelMeseros.setPreferredSize(new Dimension(500, 200));
 
-    add(contenedorGrafica);
+    add(panelMeseros);
   }
 }
