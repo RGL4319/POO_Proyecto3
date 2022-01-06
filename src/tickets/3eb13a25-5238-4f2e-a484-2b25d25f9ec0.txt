@@ -1,7 +1,0 @@
-3eb13a25-5238-4f2e-a484-2b25d25f9ec0
-Gamaliel Ríos
-Mesa 1
-{Spaghetti=4, Milanesa=4, Agua de frutas=4}
-468.0
-552.88
-Pago con tarjeta.
