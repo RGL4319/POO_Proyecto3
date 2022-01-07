@@ -8,7 +8,9 @@ import java.util.UUID;
 import modelos.Mesa;
 import modelos.Orden;
 import modelos.Ticket;
-
+/**
+ * Clase que funge como usuario registrado al restaurante 
+ */
 public abstract class Usuario implements Serializable {
 
     private static int numUsuarios;

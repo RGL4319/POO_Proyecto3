@@ -72,7 +72,10 @@ public class FormularioMesero extends JPanel {
     campoFecha.setText("");
     rBotonMujer.setSelected(true);
   }
-
+/**
+ * Se encarga de construir y configurar los componentes para mostrar las características que debe de 
+ * tener un usuario/mesero asociado al restaurante. 
+*/
   private void crearComponentes() {
 
     JPanel panel = new JPanel();
@@ -201,7 +204,7 @@ public class FormularioMesero extends JPanel {
     btnRegresar.addActionListener(e -> {
       VentanaApp.getInstancia().toggleVistasUsuarios();
     });
-
+    //Establece los colores de los botones dentro de la vista gráfica 
     btnAccion.setBackground( new Color( 9, 150, 47 ) );
     btnRegresar.setBackground( Color.RED );
     btnAccion.setForeground( Color.WHITE );
@@ -229,15 +232,16 @@ public class FormularioMesero extends JPanel {
 
     add(panel);
   }
-
+/**
+ * Se encarga de capturar los datos ingresados de cada uno de los usuarios generados 
+ */
   public void cargarDatosUsuario() {
     campoNombre.setText(usuario.getNombre());
     campoUsuario.setText(usuario.getUsuario());
     campoPassword.setText(usuario.getPassword());
     campoTelefono.setText(usuario.getTelefono());
-
+    //Formato de la fecha de nacimiento para el usuario creado 
     campoFecha.setText(usuario.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-
     if (usuario.getSexo() == 'M')
       rBotonMujer.setSelected(true);
     else

@@ -45,9 +45,16 @@ public class Ticket implements Serializable {
      * Si se pagó con efectivo o fue un pago con tarjeta
      */
     private boolean esPagoConEfectivo;
-
+/**
+ * La fecha y hora de acuerdo al momento de que se generó el ticket
+ */
     private LocalDateTime fechaHora;
-
+/**
+ * Constructor de la clase 
+ * @param mesa que contiene una orden 
+ * @param propina monto dado por el usuario 
+ * @param esPagoConEfectivo forma de pago 
+ */
     public Ticket( Mesa mesa, double propina, boolean esPagoConEfectivo) {
         this.propina = propina;
         this.mesa = mesa.getNumeroMesa();
@@ -58,7 +65,9 @@ public class Ticket implements Serializable {
         fechaHora = LocalDateTime.now();
         generarTicket();
     }
-
+/**
+ * Se encarga de generar el ticket de acuerdo a las características de las ordenes 
+ */
     private void generarTicket () {
         try {
            // private static final String ruta1 = new File("archivos/").getAbsolutePath();
@@ -78,23 +87,38 @@ public class Ticket implements Serializable {
             e.printStackTrace();
         }
     }
-
+/**
+ * Se encarga de leer el IVA definido 
+ * @return iva monto 
+ */
     public static double getIva() {
         return iva;
     }
-
+/**
+ * Se encarga de leer la propina ingresada por el usuario 
+ * @return propina monto 
+ */
     public double getPropina() {
         return propina;
     }
-
+/**
+ * Se encarga de leer la orden asociada a una mesa 
+ * @return orden 
+ */
     public Orden getOrden() {
         return orden;
     }
-
+/***
+ * Se encarga de leer el pago total de la orden creada 
+ * @return total monto a pagar 
+ */
     public double getTotal() {
         return total;
     }
-
+/**
+ * Se encarga de obtener el tipo de pago 
+ * @return esPagoConEfectivo true o false según sea el caso 
+ */
     public boolean isEsPagoConEfectivo() {
         return esPagoConEfectivo;
     }    

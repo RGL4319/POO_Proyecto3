@@ -5,17 +5,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modelos.Restaurante;
-
+/**
+ * Clase que muestra la información de las estadísticas calculadas 
+ */
 public class Estadisticas extends JPanel {
-    
+    /**
+     * Restaurante asociado al programa creado 
+     */
     private Restaurante restaurante;
-
+    /**
+     * Constructor de la clase 
+     * @param restaurante el restaurante asociado al programa 
+     */
     public Estadisticas( Restaurante restaurante ) {
         super();
         this.restaurante = restaurante;
         crearComponentes();
     }
-
+    /**
+     * Se encarga de crear los componentes para la vista de las estadísticas 
+     */
     private void crearComponentes() {
         Box contenedor = Box.createVerticalBox();
         Box platillos = Box.createVerticalBox();

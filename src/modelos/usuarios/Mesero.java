@@ -3,7 +3,7 @@ package modelos.usuarios;
 import java.time.LocalDate;
 
 /**
- * Clase que funge 
+ * Clase que funge como servidor del restaurante 
  */
 public class Mesero extends Usuario {
     

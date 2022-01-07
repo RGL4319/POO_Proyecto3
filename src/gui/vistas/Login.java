@@ -41,7 +41,7 @@ public class Login extends JPanel {
   private JButton botonLogin;
 
   /**
-   * Caracter que se muestra en el compo de la contraseña
+   * Caracter que se muestra en el campo de la contraseña
    */
   private char puntito;
 

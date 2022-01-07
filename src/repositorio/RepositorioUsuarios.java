@@ -15,7 +15,10 @@ import modelos.usuarios.Usuario;
  * Clase que genera el repositorio de los usuarios creados por defecto, escribe los usuarios en un archivo de objetos
  */
 public class RepositorioUsuarios {
-
+/**
+ * Método estático que lee los usuarios registados en el programa 
+ * @return Lista de usuarios registrados en el restaurante 
+ */
     public static List<Usuario> getUsuarios() {
         List<Usuario> usuarios = new LinkedList<>();
         File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);

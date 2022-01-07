@@ -68,7 +68,10 @@ public class Inicio extends JPanel {
 
     crearComponentes();
   }
-
+/**
+   * Se encarga de construir y configurar todos los componentes para mostrar las mesas disponibles 
+   * y no disponibles
+*/
   public void crearComponentes() {
     setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 

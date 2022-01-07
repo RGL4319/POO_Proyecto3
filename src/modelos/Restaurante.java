@@ -89,12 +89,18 @@ public class Restaurante implements Serializable {
   public boolean agregarPlatillo(Platillo platillo) {
     return platillos.add(platillo);
   }
-
+/**
+ * Agrega un ticket que se genera al momento de finalizar la compra 
+ * @param ticket creado para guardar un registro de la compra realizada por el cliente
+ */
   public void agregarTicket(Ticket ticket) {
     tickets.add( ticket );
     RepositorioRestaurante.guardar( this );
   }
-
+/**
+ * Lectura de tickets generador
+ * @return la lista de tickets agregados a la lista de tickets 
+ */
   public List<Ticket> getTickets () {
     return tickets;
   }

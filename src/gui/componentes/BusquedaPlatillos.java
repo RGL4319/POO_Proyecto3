@@ -25,10 +25,12 @@ class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
    * El restaurante asociado con el programa
    */
   private Restaurante restaurante;
-
+/**
+ * Constructor de la clase sobrecargado con un atributo 
+ * @param restaurante asociado al programa creado
+ */
   public PlatillosComboBoxRenderer(Restaurante restaurante) {
     super();
-
     this.restaurante = restaurante;
   }
 
@@ -56,7 +58,6 @@ class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
 }
 
 public class BusquedaPlatillos extends JPanel {
-
   private Restaurante restaurante;
   private Usuario usuario;
   private OrdenMesa guiOrden;
